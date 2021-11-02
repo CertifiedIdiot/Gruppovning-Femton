@@ -10,34 +10,36 @@ namespace testcard
     {
         static void Main(string[] args)
         {
+            CardBuilder fiveOfSpadesTest = new();
+
             WriteLineColour(artCardTable, ConsoleColor.DarkGreen);
             //Card width + 4 spaces increase for each card
             // Top row
             PrintTopCardCount(5);
             PrintComputerScore(97, 10);
-            PrintCard(20, 7);
-            PrintCard(35, 7);
-            PrintCard(50, 7);
-            PrintCard(65, 7);
-            PrintCard(80, 7);
+            PrintCard(20, 7, fiveOfSpadesTest.ConstructedCard);     // Temp solution, meant to be more automated.
+            PrintCard(35, 7, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(50, 7, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(65, 7, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(80, 7, fiveOfSpadesTest.ConstructedCard);
             // Bottom row
             PrintBottomCardCount(16);
             PrintPlayerScore(97, 21);
-            PrintCard(20, 18);
-            PrintCard(35, 18);
-            PrintCard(50, 18);
-            PrintCard(65, 18);
-            PrintCard(80, 18);
+            PrintCard(20, 18, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(35, 18, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(50, 18, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(65, 18, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(80, 18, fiveOfSpadesTest.ConstructedCard);
 
             Console.WriteLine();
             Console.WriteLine();
             CenterWriteLine("Press [Enter] to get a card.");
         }
 
-        private static void PrintCard(int posY, int posX)
+        private static void PrintCard(int posY, int posX, string[] card)
         {
             // Each card has 7 rows
-            foreach (var cardRow in cardArray)
+            foreach (var cardRow in card)
             {
                 Console.SetCursorPosition(posY, posX++);
                 Console.WriteLine(cardRow);
