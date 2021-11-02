@@ -8,6 +8,9 @@ namespace testcard.ArtAssets
 {
     public class CardBuilder
     {
+        // Suit symbols 
+        //  ♠       ♦       ♥       ♣
+
 
         // Needs better solution. Automatically change suit char + number?
 
