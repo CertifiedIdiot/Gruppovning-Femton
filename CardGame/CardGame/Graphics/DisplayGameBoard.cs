@@ -15,17 +15,20 @@ namespace Graphics
         // Prints out the entire gameboard with updated cards.
         public static void ShowBoard()
         {
-            DrawnCard datorCard1, datorCard2, datorCard3, datorCard4, datorCard5;
-            GetComputerCards(out datorCard1, out datorCard2, out datorCard3, out datorCard4, out datorCard5);
-            DrawnCard playerCard1, playerCard2, playerCard3, playerCard4, playerCard5;
-            GetPlayerCards(out playerCard1, out playerCard2, out playerCard3, out playerCard4, out playerCard5);
+
+            // Each card stored in ComputerGameBoard and PlayerGameBoard gets stored in an array with room for 5 elements.
+            DrawnCard[] computerDrawCards = PopulateComputerCardArray();
+
+            DrawnCard[] playerDrawCards = PopulatePlayerCardArray();
 
             // Print background ASCII
             WriteLineColour(artCardTable, ConsoleColor.DarkGreen);
+
             // Prints the computer card graphics + value + pix
-            PrintComputerSide(datorCard1, datorCard2, datorCard3, datorCard4, datorCard5);
+            PrintComputerSide(computerDrawCards);
+
             // Prints the player card graphics + value + pix
-            PrintPlayerSide(playerCard1, playerCard2, playerCard3, playerCard4, playerCard5);
+            PrintPlayerSide(playerDrawCards);
 
             Console.WriteLine();
 
@@ -34,51 +37,62 @@ namespace Graphics
         }
 
 
-
-
-        // Refactored mess.
-        private static void GetPlayerCards(out DrawnCard playerCard1, out DrawnCard playerCard2, out DrawnCard playerCard3, out DrawnCard playerCard4, out DrawnCard playerCard5)
+        private static DrawnCard[] PopulatePlayerCardArray()
         {
-            playerCard1 = new(PlayerGameBoard[0]);
-            playerCard2 = new(PlayerGameBoard[1]);
-            playerCard3 = new(PlayerGameBoard[2]);
-            playerCard4 = new(PlayerGameBoard[3]);
-            playerCard5 = new(PlayerGameBoard[4]);
+            DrawnCard[] playerDrawCards = new DrawnCard[5];
+            for (int i = 0; i < PlayerGameBoard.Count; i++)
+            {
+                playerDrawCards[i] = new(PlayerGameBoard[i]);
+            }
+            return playerDrawCards;
         }
 
-        private static void GetComputerCards(out DrawnCard datorCard1, out DrawnCard datorCard2, out DrawnCard datorCard3, out DrawnCard datorCard4, out DrawnCard datorCard5)
+        private static DrawnCard[] PopulateComputerCardArray()
         {
-            datorCard1 = new(ComputerGameBoard[0]);
-            datorCard2 = new(ComputerGameBoard[1]);
-            datorCard3 = new(ComputerGameBoard[2]);
-            datorCard4 = new(ComputerGameBoard[3]);
-            datorCard5 = new(ComputerGameBoard[4]);
+            DrawnCard[] computerDrawCards = new DrawnCard[5];
+            for (int i = 0; i < ComputerGameBoard.Count; i++)
+            {
+                computerDrawCards[i] = new(ComputerGameBoard[i]);
+            }
+            return computerDrawCards;
         }
 
 
 
-        private static void PrintPlayerSide(DrawnCard playerCard1, DrawnCard playerCard2, DrawnCard playerCard3, DrawnCard playerCard4, DrawnCard playerCard5)
+        private static void PrintPlayerSide(DrawnCard[] drawPlayerCards)
         {
-            PrintPlayerCards(16);
-            PrintPlayerPix(97, 21);
             // Card width + 4 spaces increase for each card
-            PrintCard(20, 18, playerCard1.ConstructedCard);
-            PrintCard(35, 18, playerCard2.ConstructedCard);
-            PrintCard(50, 18, playerCard3.ConstructedCard);
-            PrintCard(65, 18, playerCard4.ConstructedCard);
-            PrintCard(80, 18, playerCard5.ConstructedCard);
+            PrintPlayerCardSum(16); // Prints Player Card Value
+            PrintPlayerPix(97, 21); // Prints player pix
+            
+            // If the array index is not null, prints the corresponding card at the chosen position.
+            if (drawPlayerCards[0] != null)
+                PrintCard(20, 18, drawPlayerCards[0].ConstructedCard);
+            if (drawPlayerCards[1] != null)
+                PrintCard(35, 18, drawPlayerCards[1].ConstructedCard);
+            if (drawPlayerCards[2] != null)
+                PrintCard(50, 18, drawPlayerCards[2].ConstructedCard);
+            if (drawPlayerCards[3] != null)
+                PrintCard(65, 18, drawPlayerCards[3].ConstructedCard);
+            if (drawPlayerCards[4] != null)
+                PrintCard(80, 18, drawPlayerCards[4].ConstructedCard);
         }
 
-        private static void PrintComputerSide(DrawnCard datorCard1, DrawnCard datorCard2, DrawnCard datorCard3, DrawnCard datorCard4, DrawnCard datorCard5)
+        private static void PrintComputerSide(DrawnCard[] drawComputerCards)
         {
-            PrintComputerCards(5);
+            PrintComputerCardSum(5);
             PrintComputerPix(97, 10);
-            // Card width + 4 spaces increase for each card
-            PrintCard(20, 7, datorCard1.ConstructedCard);
-            PrintCard(35, 7, datorCard2.ConstructedCard);
-            PrintCard(50, 7, datorCard3.ConstructedCard);
-            PrintCard(65, 7, datorCard4.ConstructedCard);
-            PrintCard(80, 7, datorCard5.ConstructedCard);
+            
+            if (drawComputerCards[0] != null)
+                PrintCard(20, 7, drawComputerCards[0].ConstructedCard);
+            if (drawComputerCards[1] != null)
+                PrintCard(35, 7, drawComputerCards[1].ConstructedCard);
+            if (drawComputerCards[2] != null)
+                PrintCard(50, 7, drawComputerCards[2].ConstructedCard);
+            if (drawComputerCards[3] != null)
+                PrintCard(65, 7, drawComputerCards[3].ConstructedCard);
+            if (drawComputerCards[4] != null)
+                PrintCard(80, 7, drawComputerCards[4].ConstructedCard);
         }
 
 
@@ -107,13 +121,13 @@ namespace Graphics
             Console.WriteLine($"[Opponent pix: {Computer.Pix}  ]"); 
         }
 
-        private static void PrintComputerCards(int posY)
+        private static void PrintComputerCardSum(int posY)
         {
 
             Console.CursorTop = posY;
             CenterWriteLine($"[  Card Value: {Computer.CardSum}  ]"); 
         }
-        private static void PrintPlayerCards(int posY)
+        private static void PrintPlayerCardSum(int posY)
         {
             Console.CursorTop = posY;
             CenterWriteLine($"[  Card Value: {Player.CardSum}  ]"); 
