@@ -15,7 +15,6 @@ namespace Menus
 
             var menuInput = InputHandler.ConsoleToInt();
 
-
             switch (menuInput)
             {
                 case 1: Game.Game.Start(); break;
@@ -37,6 +36,7 @@ namespace Menus
 
         private static void MenuHeader()
         {
+            Console.ForegroundColor
             Console.WriteLine("\tMENU");
         }
     }

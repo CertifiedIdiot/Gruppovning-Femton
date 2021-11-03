@@ -111,7 +111,8 @@ namespace Game
 
         public static void EndGame()
         {
-            InputHandler.ConsoleToFullName();
+            SaveScore(InputHandler.ConsoleToFullName(), Computer.Points, Player.Points);
+            Menus.MenuMain.Start();
         }
     }
 }

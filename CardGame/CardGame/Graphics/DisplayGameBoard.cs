@@ -95,29 +95,29 @@ namespace Graphics
 
 
 
-        private static void PrintPlayerPix(int posY, int posX)
+        private static void PrintPlayerPix(int posY, int posX, int pix)
         {
             
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Your pix: {Player.Pix}  ]"); // TODO: Get from current player pix
+            Console.WriteLine($"[Your pix: {pix}  ]"); // TODO: Get from current player pix
         }
 
-        private static void PrintComputerPix(int posY, int posX)
+        private static void PrintComputerPix(int posY, int posX, int pix)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Opponent pix: {Computer.Pix}  ]"); // TODO: Get from current computer pix
+            Console.WriteLine($"[Opponent pix: {pix}  ]"); // TODO: Get from current computer pix
         }
 
-        private static void PrintComputerCards(int posY)
+        private static void PrintComputerCards(int posY, int cardSum)
         {
 
             Console.CursorTop = posY;
-            CenterWriteLine($"[  Card Value: {Computer.CardSum}  ]"); // TODO: Get link to current computer sum
+            CenterWriteLine($"[  Card Value: {cardSum}  ]"); // TODO: Get link to current computer sum
         }
-        private static void PrintPlayerCards(int posY)
+        private static void PrintPlayerCards(int posY, int cardSum)
         {
             Console.CursorTop = posY;
-            CenterWriteLine($"[  Card Value: {Player.CardSum}  ]"); // TODO: Get link to current player sum
+            CenterWriteLine($"[  Card Value: {cardSum}  ]"); // TODO: Get link to current player sum
         }
 
 
