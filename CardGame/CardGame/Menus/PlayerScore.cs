@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game
+namespace Menus
 {
     class PlayerScore
     {
-        public int Name { get; set; } = "Computer";
-        public int Score { get; set; } = 0;
+        public string Name { get; set; } = "";
+        public int Points { get; set; } = 0;
     }
 }
