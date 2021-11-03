@@ -17,26 +17,29 @@ namespace Graphics
         public string CardNumberBottom { get; set; } = "|       # |";
         public string CardBottom { get; set; } = "└---------┘";
         public string[] ConstructedCard { get; set; }
+        public int CardIndex { get; set; }
         
-        public DrawnCard()
+        public DrawnCard(int cardIndex)
         {
-            CardNumberTop = GetCardNumberTop();
-            CardMiddleSuit = GetCardMiddleSuit();
-            CardNumberBottom = GetCardNumberBottom();
+
+            CardNumberTop = GetCardNumberTop(cardIndex);
+            CardMiddleSuit = GetCardMiddleSuit(cardIndex);
+            CardNumberBottom = GetCardNumberBottom(cardIndex);
             ConstructedCard = CardArray();
+            CardIndex = cardIndex;
         }
 
         // Changes the value of the card constructed.
         public string GetCardNumberTop()
         {
-            int cardNumber = GetValue(5);   // Manually added for now. To be automatically selected from drawn card
+            int cardNumber = GetValue();   // Manually added for now. To be automatically selected from drawn card
             string cardNumberTop = $"| {cardNumber}       |";
             return cardNumberTop;
         }
 
         public string GetCardNumberBottom()
         {
-            int cardNumber = GetValue(5);   // Manually added for now. To be automatically selected from drawn card
+            int cardNumber = GetValue();   // Manually added for now. To be automatically selected from drawn card
             string cardNumberBottom = $"|       {cardNumber} |";
             return cardNumberBottom;
         }
@@ -61,7 +64,7 @@ namespace Graphics
         public char GetSuit(char placeholderDelete)
         {
             // TODO: Code to get card suit from drawn card and return. From chosen cards in game-class?
-            var suit = Game.Game.GameBoard
+            var suit = 
             return placeholderDelete;
         }
 

@@ -11,31 +11,29 @@ namespace Game
         static List<Card> Cards = new List<Card>();
         private static Random rng = new Random();
 
-
-
-        public static IEnumerable<Card> DrawCard(int numberOfCards=1)
+        public static IEnumerable<Card> DrawCard(int numberOfCards)
         {
-            List<Card> list = new();
-            int limit= Cards.Count - numberOfCards - 1;
+            Card card = new Card();
+            int limit = Cards.Count - numberOfCards - 1;
 
             for(int i = Cards.Count-1; i>limit; i--)
             {
-                list.Add(Cards[i]);
+                card = Cards[i];
                 Cards.RemoveAt(i);
-            }
 
-            foreach (var card in list)
-            {
                 yield return card;
             }
         }
          
         public static Card DrawCard()
         {
-            return 
+            Card card = Cards[Cards.Count - 1];
+            Cards.RemoveAt(Cards.Count - 1);
+
+            return card;
         }
 
-            public static void ResetCards()
+        public static void ResetCards()
         {
             FillDeck();
             Cards.Shuffle();
@@ -71,9 +69,9 @@ namespace Game
 
         }
 
-        public static bool CheckAnyCardsLeft()
+        public static bool CheckAnyCardsLeft(int cardsLeft=0)
         {
-            if (Cards.Count <= 0)
+            if (Cards.Count < cardsLeft)
                 return false;
             else
                 return true;

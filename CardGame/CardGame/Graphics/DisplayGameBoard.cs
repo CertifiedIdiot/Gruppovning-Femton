@@ -16,7 +16,7 @@ namespace Graphics
         public static void ShowBoard()
         {
 
-            DrawnCard KortEtt = new();
+            DrawnCard KortEtt = new(); //Gameboard index in constructor perhaps
             DrawnCard KortTvå = new();
 
             WriteLineColour(artCardTable, ConsoleColor.DarkGreen);

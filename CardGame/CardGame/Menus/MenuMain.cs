@@ -25,7 +25,7 @@ namespace Menus
 
         }
 
-        private static void PrintMenu()
+        private static void PrintMenu() //kommer att göra den lite snyggare
         {
             Console.WriteLine("1. Start game");
             Console.WriteLine("2. High score");
