@@ -13,18 +13,29 @@ namespace Game
 
 
 
-        //Printa kort
-
-        public static Card GetCards()
+        public static IEnumerable<Card> DrawCard(int numberOfCards=1)
         {
-            Card card = new Card();
-            card=Cards[Cards.Count - 1];
-            Cards.RemoveAt(Cards.Count - 1);
+            List<Card> list = new();
+            int limit= Cards.Count - numberOfCards - 1;
 
-            return card;
+            for(int i = Cards.Count-1; i>limit; i--)
+            {
+                list.Add(Cards[i]);
+                Cards.RemoveAt(i);
+            }
+
+            foreach (var card in list)
+            {
+                yield return card;
+            }
+        }
+         
+        public static Card DrawCard()
+        {
+            return 
         }
 
-        public static void ResetCards()
+            public static void ResetCards()
         {
             FillDeck();
             Cards.Shuffle();

@@ -50,16 +50,18 @@ namespace Graphics
         }
 
 
-        public int GetValue(int placeholderDelete)
+        public int GetValue()
         {
             // TODO: Code to get card value from drawn card and return. From chosen cards in game-class?
-            return placeholderDelete;
+            var value = Game.Game.GameBoard[].Number;
+            return value;
 
         }
 
         public char GetSuit(char placeholderDelete)
         {
             // TODO: Code to get card suit from drawn card and return. From chosen cards in game-class?
+            var suit = Game.Game.GameBoard
             return placeholderDelete;
         }
 

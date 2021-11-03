@@ -33,7 +33,7 @@ namespace Menus
             Console.WriteLine(">> ");
         }
 
-        private static void MenuHeader();
+        private static void MenuHeader()
         {
             Console.WriteLine("");
         }

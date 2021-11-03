@@ -23,15 +23,16 @@ namespace Graphics
             //Card width + 4 spaces increase for each card
             // Top row
             PrintTopCardCount(5);
-            PrintComputerScore(97, 10);
-            PrintCard(20, 7, GameBoard[0]);     // Måla upp kort för varje position. Behöver ny DrawnCard instansiering för varje kort. Onödigt.
+            PrintComputerPix(97, 10);
+            // Måla upp kort för varje position. Behöver ny DrawnCard instansiering för varje kort. Onödigt.
+            PrintCard(20, 7, KortEtt.ConstructedCard);     
             PrintCard(35, 7, KortTvå.ConstructedCard);
             PrintCard(50, 7, KortEtt.ConstructedCard);
             PrintCard(65, 7, KortEtt.ConstructedCard);
             PrintCard(80, 7, KortEtt.ConstructedCard);
             // Bottom row
             PrintBottomCardCount(16);
-            PrintPlayerScore(97, 21);
+            PrintPlayerPix(97, 21);
             PrintCard(20, 18, KortEtt.ConstructedCard);
             PrintCard(35, 18, KortEtt.ConstructedCard);
             PrintCard(50, 18, KortEtt.ConstructedCard);
@@ -59,16 +60,16 @@ namespace Graphics
 
 
 
-        private static void PrintPlayerScore(int posY, int posX)
+        private static void PrintPlayerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Your pix: 200  ]");
+            Console.WriteLine($"[Your pix: {Game.Game.PixsPlayer}  ]");
         }
 
-        private static void PrintComputerScore(int posY, int posX)
+        private static void PrintComputerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Opponent pix: 700  ]");
+            Console.WriteLine($"[Opponent pix: {Game.Game.PixsComputer}  ]");
         }
 
         private static void PrintTopCardCount(int posY)

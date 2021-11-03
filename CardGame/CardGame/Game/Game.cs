@@ -27,7 +27,7 @@ namespace Game
         {
             // Ränsa spel yta och ladda in nya kort från GetCards
             Console.Clear();
-            Deck.GetCards();
+            Deck.DrawCard();
             // Skicka värden på cards till graphics för att ladda in 
             // en ny spel yta
         }

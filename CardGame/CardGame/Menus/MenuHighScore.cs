@@ -15,12 +15,16 @@ namespace Menus
 
         }
 
-        public static void SaveScore(string name, int points)
+        public static void SaveScore(string name, int score) //spara poängen, när spelaren eller datorn har 0 pix
         {
-            MenuHighScore highscoreList = new();
-            highscoreList.Add("player1", 1); //test
+            name = Game.Game.EndGame();
+            score = Game.Game.EndGame();
 
-            //spara poängen, när spelaren eller datorn har 0 pix
+            MenuHighScore highscoreList = new();
+           
+            highscoreList.Add("player1", 1); //test
+            highscoreList.Add("player2", 2); //test
+         
         }
     }
     
