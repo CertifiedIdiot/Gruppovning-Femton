@@ -7,22 +7,24 @@ namespace Game
 {
     class Game
     {
-        static PlayerStats Player = new();
-        static PlayerStats Computer = new();
+        public static PlayerStats Player = new();
+        public static PlayerStats Computer = new();
 
-        public static List<Card> PlayerGameBoard = new List<Card>();
-        public static List<Card> ComputerGameBoard = new List<Card>();
+        public static List<Card> PlayerGameBoard = new List<Card>(new Card[5]);
+        public static List<Card> ComputerGameBoard = new List<Card>(new Card[5]);
      
         public static void Start()
         {
+            Deck.ResetCards();
+            Console.Clear();
+
             // <insert game loop here> 
             while (Deck.CheckCardsLeft(10))
             {
-                Deck.ResetCards();
                 CheckPixs();
                 FillBoard();
                 AddPoints();
-                ResetBoard();
+                DisplayHelper.CenterPressEnterToContinue();
             }
         }
 
@@ -30,11 +32,17 @@ namespace Game
         {
             //5 cards for the player
             for (int i = 0; i < 5; i++)
+            {
                 PlayerGameBoard[i] = Deck.DrawCard();
-            
+            }
+
             //5 cards for the computer
             for (int i = 0; i < 5; i++)
+            {
                 ComputerGameBoard[i] = Deck.DrawCard();
+            }
+
+            DisplayGameBoard.ShowBoard();
 
         }
 
@@ -75,15 +83,9 @@ namespace Game
                 Player.Pix -= 100;
                 Computer.Pix += 100;
             }
-        }
 
-        public static void ResetBoard()
-        {
-            // Ränsa spel yta och ladda in nya kort från GetCards
-            Console.Clear();
-            FillBoard();
-            // Skicka värden på cards till graphics för att ladda in 
-            // en ny spel yta
+            Computer.CardSum = 0;
+            Player.CardSum = 0;
         }
 
         public static bool CheckPixs()
@@ -111,7 +113,8 @@ namespace Game
 
         public static void EndGame()
         {
-            SaveScore(InputHandler.ConsoleToFullName(), Computer.Points, Player.Points);
+            Console.Clear();
+            Menus.MenuHighScore.SaveScore(Computer.Points, Player.Points);
             Menus.MenuMain.Start();
         }
     }

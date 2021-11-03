@@ -13,14 +13,28 @@ namespace Menus
         {
             PrintMenu();
 
-            var menuInput = InputHandler.ConsoleToInt();
-
-            switch (menuInput)
+            while (true)
             {
-                case 1: Game.Game.Start(); break;
-                case 2: MenuHighScore.Start(); break;
-                case 3: Console.WriteLine("Thank you for playing!"); Environment.Exit(0); break;
-                default: Console.WriteLine("Invalid input"); break;
+                switch (InputHandler.ConsoleToInt())
+                    {
+                        case 1:
+                            Console.WriteLine("What is your name?");
+                            Menus.MenuHighScore.PlayerName = InputHandler.ConsoleToFullName();
+                            Game.Game.Start();
+                            return;
+
+                        case 2:
+                            MenuHighScore.Start();
+                            return;
+
+                        case 3:
+                            Console.WriteLine("Thank you for playing!"); Environment.Exit(0);
+                            return;
+
+                        default:
+                            Console.WriteLine("Invalid Menu Choice.\n");
+                            break;
+                    }
             }
 
         }
@@ -30,14 +44,15 @@ namespace Menus
             MenuHeader();
             Console.WriteLine("1. Start game");
             Console.WriteLine("2. High score");
-            Console.WriteLine("3. Exit");
-            Console.WriteLine(">> ");
+            Console.WriteLine("3. Exit\n");
+            Console.Write(">> ");
         }
 
         private static void MenuHeader()
         {
-            Console.ForegroundColor
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\tMENU");
+            Console.ResetColor();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Game
             Card card = new Card();
             int limit = Cards.Count - numberOfCards - 1;
 
-            for(int i = Cards.Count-1; i>limit; i--)
+            for(int i = Cards.Count-1; i > limit; i--)
             {
                 card = Cards[i];
                 Cards.RemoveAt(i);
@@ -70,7 +70,7 @@ namespace Game
 
         }
 
-        public static bool CheckCardsLeft(int cardsLeft=0)
+        public static bool CheckCardsLeft(int cardsLeft=1)
         {
             if (Cards.Count < cardsLeft)
                 return false;
@@ -80,7 +80,7 @@ namespace Game
 
         private static void FillDeck()
         {
-            int suitNumber = 1;
+            int suitNumber = 0;
             int cardNumber = 1;
             for (int i = 0; i <= 52; i++)
             {
@@ -88,6 +88,11 @@ namespace Game
                 {
                     cardNumber = 1;
                     suitNumber++;
+                }
+
+                if(suitNumber>3)
+                {
+                    suitNumber = 0;
                 }
 
                 Cards.Add(new Card() { Number = cardNumber, Suit = GetSuit(suitNumber) });

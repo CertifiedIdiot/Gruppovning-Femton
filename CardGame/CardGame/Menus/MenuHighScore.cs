@@ -9,6 +9,7 @@ namespace Menus
     class MenuHighScore
     {
        static List<PlayerScore> HighScoreList = new();
+        public static string PlayerName = "";
 
         public static void Start()
         {
@@ -17,13 +18,13 @@ namespace Menus
             BackToMenu();
         }
 
-        public static void SaveScore(string name, int computerPoints, int playerPoints)
+        public static void SaveScore(int computerPoints, int playerPoints)
         {
             PlayerScore Score = new();
 
             if (playerPoints > computerPoints)
             {
-                Score.Name = name;
+                Score.Name = PlayerName;
                 Score.Points = playerPoints;
             }
             if (computerPoints > playerPoints)

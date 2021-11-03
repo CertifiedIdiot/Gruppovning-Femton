@@ -34,14 +34,20 @@ namespace Graphics
         {
             int cardNumber = GetValue();  
             string cardNumberTop = $"| {cardNumber}       |";
-            return cardNumberTop;
+            if (cardNumber == 10)
+                return string cardNumberBottom = $"|      {cardNumber} |"; // OM tio, tar bort en space char från kortet, tänkte jag.
+            else
+                return cardNumberTop;
         }
 
         public string GetCardNumberBottom()
         {
-            int cardNumber = GetValue();   
+            string cardNumber = GetValue();
             string cardNumberBottom = $"|       {cardNumber} |";
-            return cardNumberBottom;
+            if (cardNumber == "10")
+                return string cardNumberBottom = $"|      {cardNumber} |";
+            else
+                return cardNumberBottom;
         }
 
         // Changes the suit of the card.
@@ -53,9 +59,16 @@ namespace Graphics
         }
 
 
-        public int GetValue()
+        public string GetValue()
         {
-            var value = ChosenCard.Number;
+            var value = ChosenCard.Number.ToString();
+            if (value == "11")
+                return "J";
+            else if (value == "12")
+                return "Q";
+            else if (value == "13")
+                return "K";
+            else
             return value;
         }
 
