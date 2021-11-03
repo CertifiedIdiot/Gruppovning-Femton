@@ -32,10 +32,11 @@ namespace Graphics
         // Changes the value of the card constructed.
         public string GetCardNumberTop()
         {
-            int cardNumber = GetValue();  
+            string cardNumber = GetValue();  
             string cardNumberTop = $"| {cardNumber}       |";
-            if (cardNumber == 10)
-                return string cardNumberBottom = $"|      {cardNumber} |"; // OM tio, tar bort en space char från kortet, tänkte jag.
+            string cardNumberTopTen = $"| {cardNumber}      |";
+            if (cardNumber == "10")
+                return cardNumberTopTen;
             else
                 return cardNumberTop;
         }
@@ -44,8 +45,9 @@ namespace Graphics
         {
             string cardNumber = GetValue();
             string cardNumberBottom = $"|       {cardNumber} |";
+            string cardNumberBottomTen = $"| {cardNumber}      |";
             if (cardNumber == "10")
-                return string cardNumberBottom = $"|      {cardNumber} |";
+                return cardNumberBottomTen;
             else
                 return cardNumberBottom;
         }
