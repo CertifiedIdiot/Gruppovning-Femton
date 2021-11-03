@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Graphics;
+using CardGame;
 
 namespace Game
 {
@@ -87,10 +89,14 @@ namespace Game
         public static bool CheckPixs()
         {
             if (Player.Pix < 100 || Computer.Pix < 100)
+            {
+                DisplayHelper.CenterWriteLine("Pengar slut");
                 return false;
+            } 
             else
+            {
                 return true;
-
+            }
         }
 
         public static void CheckCardsLeft()
@@ -105,8 +111,7 @@ namespace Game
 
         public static void EndGame()
         {
-            // Ladda upp slut poäng och namn i metod inom HighScore.
-            // InputHandler.ConsoleToFullName (kan vara smidigt)
+            InputHandler.ConsoleToFullName();
         }
     }
 }

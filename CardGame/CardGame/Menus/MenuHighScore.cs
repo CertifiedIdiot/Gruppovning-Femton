@@ -14,7 +14,7 @@ namespace Menus
         {
             PrintHighScore();
             UpdateHighScore();
-            
+            BackToMenu();
         }
 
         public static void SaveScore(string name, int computerPoints, int playerPoints)
@@ -69,6 +69,13 @@ namespace Menus
             {
                 Console.WriteLine("Name: " + score.Name + " Score: " + score.Points);
             }
+        }
+
+        private static void BackToMenu()
+        {
+            Console.WriteLine("Press any key to go back to MENU");
+            Console.ReadLine();
+            return;
         }
     }       
 }

@@ -73,6 +73,7 @@ namespace Graphics
 
         private static void PrintPlayerPix(int posY, int posX)
         {
+            
             Console.SetCursorPosition(posY, posX);
             Console.WriteLine($"[Your pix: {PixsPlayer}  ]");
         }

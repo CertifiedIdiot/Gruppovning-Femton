@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CardGame;
 
 namespace Menus
 {
@@ -12,8 +13,8 @@ namespace Menus
         {
             PrintMenu();
 
-            var menuInput = 0;
-            int.TryParse(Console.ReadLine(), out menuInput);
+            var menuInput = InputHandler.ConsoleToInt();
+
 
             switch (menuInput)
             {

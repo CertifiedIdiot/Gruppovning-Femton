@@ -6,7 +6,7 @@ namespace CardGame
     class InputHandler
     {
 
-        public static string[] ConsoleToFullName()
+        public static string ConsoleToFullName()
         {
             while(true)
             {
@@ -22,7 +22,7 @@ namespace CardGame
                 Console.WriteLine($"\nIs \"{firstName} {lastName}\" correct?");
                 if (YesNoChoice() == true)
                 {
-                    string[] fullName = { firstName, lastName };
+                    string fullName = $"{firstName} {lastName}";
                     return fullName;
                 }
                 else
@@ -51,6 +51,22 @@ namespace CardGame
             }
         }
 
+        public static int ConsoleToInt()
+        {
+            while (true)
+            {
+                int number = -1;
+                string consoleInput = Console.ReadLine();
+                bool validInput = int.TryParse(consoleInput, out number);
+
+                if (validInput && number > -1)
+                {
+                    return number;
+                }
+                Console.WriteLine("\nPlease type a valid number.");
+            }
+        }
+
         public static string ConsoleToString(bool obligatoryInput = true, bool singleInput = false)
         {
             string strInput = "";
@@ -59,7 +75,7 @@ namespace CardGame
             {
                 if (obligatoryInput && singleInput != true)
                 {
-                    while(true)
+                    do
                     {
                         strInput = Console.ReadLine();
 
@@ -71,7 +87,7 @@ namespace CardGame
                         {
                             return strInput;
                         }
-                    }
+                    } while (true);
                 }
                 else
                 {
@@ -89,29 +105,6 @@ namespace CardGame
             }
 
             return Console.ReadLine();
-        }
-
-        public static int ConsoleToInt()
-        {
-            while (true)
-            {
-                int number = -1;
-                string consoleInput = Console.ReadLine();
-                bool validInput = int.TryParse(consoleInput, out number);
-
-                if (validInput && number > -1)
-                {
-                    return number;
-                }
-                Console.WriteLine("\nPlease type a valid number.");
-            }
-        }
-
-        public static void MenuReset()
-        {
-            Console.WriteLine("\nPress any key to continue.");
-            Console.ReadKey();
-            MenuMain.Start();
         }
     }
 }
