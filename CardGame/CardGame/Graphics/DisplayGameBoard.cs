@@ -16,7 +16,7 @@ namespace Graphics
         public static void ShowBoard()
         {
 
-            // Each card stored in ComputerGameBoard and PlayerGameBoard gets stored in an array with room for 5 elements.
+            // Each card stored in ComputerGameBoard and PlayerGameBoard gets stored in an array with room for 5 elements. ComputerGameBoard/PlayerGameBoard does not need to contain precisely 5 cards anymore.
             DrawnCard[] computerDrawCards = PopulateComputerCardArray();
 
             DrawnCard[] playerDrawCards = PopulatePlayerCardArray();
@@ -24,19 +24,17 @@ namespace Graphics
             // Print background ASCII
             WriteLineColour(artCardTable, ConsoleColor.DarkGreen);
 
-            // Prints the computer card graphics + value + pix
+            // Prints the computer/player card graphics + value + pix. Requires an array of "DrawnCard" cards, which the method will draw on screen.
             PrintComputerSide(computerDrawCards);
-
-            // Prints the player card graphics + value + pix
             PrintPlayerSide(playerDrawCards);
 
+            // Padding for the "press enter" button under the green game board.
             Console.WriteLine();
-
             Console.WriteLine();
 
         }
 
-
+        // Returns the populated array.
         private static DrawnCard[] PopulatePlayerCardArray()
         {
             DrawnCard[] playerDrawCards = new DrawnCard[5];
@@ -57,25 +55,23 @@ namespace Graphics
             return computerDrawCards;
         }
 
-
-
         private static void PrintPlayerSide(DrawnCard[] drawPlayerCards)
         {
             // Card width + 4 spaces increase for each card
             PrintPlayerCardSum(16); // Prints Player Card Value
             PrintPlayerPix(97, 21); // Prints player pix
             
-            // If the array index is not null, prints the corresponding card at the chosen position.
+            // If the array index is not null, prints the corresponding card at the chosen position (if the array does not have anything in it at that position, nothing will be printed)
             if (drawPlayerCards[0] != null)
-                PrintCard(20, 18, drawPlayerCards[0].ConstructedCard);
+                PrintCard(21, 18, drawPlayerCards[0].ConstructedCard);
             if (drawPlayerCards[1] != null)
-                PrintCard(35, 18, drawPlayerCards[1].ConstructedCard);
+                PrintCard(36, 18, drawPlayerCards[1].ConstructedCard);
             if (drawPlayerCards[2] != null)
-                PrintCard(50, 18, drawPlayerCards[2].ConstructedCard);
+                PrintCard(51, 18, drawPlayerCards[2].ConstructedCard);
             if (drawPlayerCards[3] != null)
-                PrintCard(65, 18, drawPlayerCards[3].ConstructedCard);
+                PrintCard(66, 18, drawPlayerCards[3].ConstructedCard);
             if (drawPlayerCards[4] != null)
-                PrintCard(80, 18, drawPlayerCards[4].ConstructedCard);
+                PrintCard(81, 18, drawPlayerCards[4].ConstructedCard);
         }
 
         private static void PrintComputerSide(DrawnCard[] drawComputerCards)
@@ -84,15 +80,15 @@ namespace Graphics
             PrintComputerPix(97, 10);
             
             if (drawComputerCards[0] != null)
-                PrintCard(20, 7, drawComputerCards[0].ConstructedCard);
+                PrintCard(21, 7, drawComputerCards[0].ConstructedCard);
             if (drawComputerCards[1] != null)
-                PrintCard(35, 7, drawComputerCards[1].ConstructedCard);
+                PrintCard(36, 7, drawComputerCards[1].ConstructedCard);
             if (drawComputerCards[2] != null)
-                PrintCard(50, 7, drawComputerCards[2].ConstructedCard);
+                PrintCard(51, 7, drawComputerCards[2].ConstructedCard);
             if (drawComputerCards[3] != null)
-                PrintCard(65, 7, drawComputerCards[3].ConstructedCard);
+                PrintCard(66, 7, drawComputerCards[3].ConstructedCard);
             if (drawComputerCards[4] != null)
-                PrintCard(80, 7, drawComputerCards[4].ConstructedCard);
+                PrintCard(81, 7, drawComputerCards[4].ConstructedCard);
         }
 
 
@@ -112,25 +108,29 @@ namespace Graphics
         {
             
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Your pix: {Player.Pix}  ]"); 
+            WriteLineColour($"Your pix:", ConsoleColor.DarkCyan);
+            Console.SetCursorPosition(posY, posX + 1);
+            WriteLineColour($"[{Player.Pix}]", ConsoleColor.Yellow);
         }
 
         private static void PrintComputerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Opponent pix: {Computer.Pix}  ]"); 
+            WriteLineColour($"Opponent Pix:", ConsoleColor.Red);
+            Console.SetCursorPosition(posY, posX + 1);
+            WriteLineColour($"[{Computer.Pix}]", ConsoleColor.Yellow);
         }
 
         private static void PrintComputerCardSum(int posY)
         {
 
             Console.CursorTop = posY;
-            CenterWriteLine($"[  Card Value: {Computer.CardSum}  ]"); 
+            CenterWriteLineColour($"[  Card Value: {Computer.CardSum}  ]", ConsoleColor.Red); 
         }
         private static void PrintPlayerCardSum(int posY)
         {
             Console.CursorTop = posY;
-            CenterWriteLine($"[  Card Value: {Player.CardSum}  ]"); 
+            CenterWriteLineColour($"[  Card Value: {Player.CardSum}  ]", ConsoleColor.DarkCyan); 
         }
         
 

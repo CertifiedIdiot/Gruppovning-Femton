@@ -31,6 +31,23 @@ namespace Graphics
             }
         }
 
+        public static void CenterWriteLineColour(string text, ConsoleColor foregroundColour, ConsoleColor backgroundColour = ConsoleColor.Black)
+        {
+            var maxStringLength = Console.WindowWidth;
+            var consoleCenter = Console.WindowWidth / 2;
+            var textInHalf = text.Length / 2;
+            Console.ForegroundColor = foregroundColour;
+            Console.BackgroundColor = backgroundColour;
+            if (text.Length >= maxStringLength - 2)
+                Console.WriteLine(text);
+            else
+            {
+                Console.CursorLeft = consoleCenter - textInHalf;
+                Console.WriteLine(text);
+            }
+            Console.ResetColor();
+        }
+
         public static void CenterPressEnterToContinue()
         {
             CenterWriteLine("Press [Enter] to continue");
