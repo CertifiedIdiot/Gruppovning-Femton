@@ -8,7 +8,7 @@ namespace Game
 {
     static class Deck
     {
-        static List<Card> Cards = new List<Card>();
+        private static List<Card> Cards = new List<Card>();
         private static Random rng = new Random();
 
         public static IEnumerable<Card> DrawCard(int numberOfCards)
@@ -35,6 +35,7 @@ namespace Game
 
         public static void ResetCards()
         {
+            RemoveCards();
             FillDeck();
             Cards.Shuffle();
         }
@@ -69,7 +70,7 @@ namespace Game
 
         }
 
-        public static bool CheckAnyCardsLeft(int cardsLeft=0)
+        public static bool CheckCardsLeft(int cardsLeft=0)
         {
             if (Cards.Count < cardsLeft)
                 return false;
@@ -94,6 +95,12 @@ namespace Game
                 cardNumber++;
             }
         }
+
+        private static void RemoveCards()
+        {
+            Cards = new List<Card>();
+        }
+
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;

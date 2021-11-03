@@ -5,18 +5,20 @@ namespace Game
 {
     class Game
     {
-        public static int PointsPlayer = 0, PixsPlayer = 500, CardSumPlayer=0;
-        public static int PointsComputer = 0, PixsComputer = 500, CardSumComputer=0;
+        static PlayerStats Player = new();
+        static PlayerStats Computer = new();
 
         public static List<Card> PlayerGameBoard = new List<Card>();
         public static List<Card> ComputerGameBoard = new List<Card>();
      
         public static void Start()
         {
+            // <insert game loop here> 
+
             Deck.ResetCards();
+            CheckPixs();
             FillBoard();
             AddPoints();
-            CheckPixs();
             ResetBoard();
         }
 
@@ -30,33 +32,69 @@ namespace Game
             for (int i = 0; i < 5; i++)
                 ComputerGameBoard[i] = Deck.DrawCard();
 
-
         }
 
         public static void AddPoints()
         {
             // Loopa gameboard och se kort
-			// Kolla vem som har fått poäng, om någon alls
+            // Kolla vem som har fått poäng, om någon alls
             // Dela ut rätt mängd pixs
+            for (int i = 0; i < PlayerGameBoard.Count; i++)
+            {
+                Player.CardSum += PlayerGameBoard[i].Number;
+                Computer.CardSum += ComputerGameBoard[i].Number;
+            }
+
+            if (Player.CardSum == 15 && Computer.CardSum != 15) // Spelaren vinner
+            {
+                Console.WriteLine("You won! You get one point."); //visas upp på grafik
+                Player.Points++;
+            }
+            else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vinner
+            {
+                Console.WriteLine("Computer won! You get one point."); //visas upp på grafik
+                Computer.Points++;
+            }
+            else if (Computer.CardSum == 15 && Player.CardSum == 15) // Båda vinner
+            {
+                Player.Points++;
+                Computer.Points++;
+            }
+
+            if (Player.Points > Computer.Points)
+            {
+                Player.Pix += 100;
+                Computer.Pix -= 100;
+            }
+            else if(Player.Points < Computer.Points)
+            {
+                Player.Pix -= 100;
+                Computer.Pix += 100;
+            }
         }
 
         public static void ResetBoard()
         {
             // Ränsa spel yta och ladda in nya kort från GetCards
             Console.Clear();
-            Deck.DrawCard();
+            FillBoard();
             // Skicka värden på cards till graphics för att ladda in 
             // en ny spel yta
         }
 
         public static void CheckPixs()
         {
-            // Kan spelaren/datorn spela?
+            if (Player.Pix >= 100);
         }
 
-        public static void CheckCards()
+        public static void CheckCardsLeft()
         {
+            if(!Deck.CheckCardsLeft(10))
+            {
+                EndGame();
+            }
             // Har vi kort för att spela?
+            // Om inte endgame.
         }
 
         public static void EndGame()

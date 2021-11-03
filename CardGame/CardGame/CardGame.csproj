@@ -8,6 +8,7 @@
   <ItemGroup>
     <None Remove="Menus\NewFile1.txt" />
     <None Remove="Menus\NewFile2.txt" />
+    <None Remove="Menus\PlayerScore" />
     <None Remove="NewFile1.txt" />
   </ItemGroup>
 

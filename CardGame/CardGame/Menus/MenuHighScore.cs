@@ -8,39 +8,57 @@ namespace Menus
 {
     class MenuHighScore
     {
-       static List<string, int> HighScoreList = new();
+       static List<PlayerScore> HighScoreList = new();
 
         public static void Start()
         {
             ScoreBoard();
-            HighScoreList.Sort();
         }
 
-        public static void SaveScore(string name, int score) //spara poängen, när spelaren eller datorn har 0 pix
+        public static void SaveScore(string name, int computerScore, int playerScore)
         {
-            name = Game.Game.EndGame();
-            score = Game.Game.EndGame();
+            playerScore Score = new playerScore();
+
+            if (playerScore > computerScore)
+            {
+               
+            }
+            if (computerScore > playerScore)
+            {
+                
+            }
 
             //spara namn och score på listan
-            //jämför den nya scoren med alla andra på listan
-                //om den är högre än första, andra eller tredje --> lägg den i listan
-                if (score > )
-                //om den är mindre än tredje --> lägg den inte in i listan
 
-            MenuHighScore highscoreList = new();
-           
-            highscoreList.Add("player1", 3);
-            highscoreList.Add("player2", 2); 
-            highscoreList.Add("player3", 1); 
+            //jämför den nya scoren med alla andra på listan
+
+            //om den är högre än första, andra eller tredje --> lägg den i listan
+        }
+
+        private static void UpdateHighScore() 
+        {
+            if (playerScore >= HighScoreList[2])
+            {
+                HighScoreList.Add(name, playerScore); //sparar till listan, men ersätter inte något?
+            }
+            //om den är mindre än tredje --> lägg den inte in i listan
+        }
+
+            //HighScoreList.Add("player1", 3); //test
+            //HighScoreList.Add("player2", 2); 
+            //HighScoreList.Add("player3", 1); 
          
         }
 
-        private static void ScoreBoard() //preliminär
+        private static void ScoreBoard() 
         {
             Console.WriteLine("\tHIGHSCORE");
-            Console.WriteLine([0]);
-            Console.WriteLine([1]);
-            Console.WriteLine([2]);
+
+            foreach (var score in HighScoreList)
+            {
+                Console.WriteLine("Name: " + score.Key + " Score: " + score.Value);
+            }
+            
         }
     }
     
