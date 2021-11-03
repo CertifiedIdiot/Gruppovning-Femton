@@ -14,12 +14,14 @@ namespace Game
         public static void Start()
         {
             // <insert game loop here> 
-
-            Deck.ResetCards();
-            CheckPixs();
-            FillBoard();
-            AddPoints();
-            ResetBoard();
+            while (Deck.CheckCardsLeft(10))
+            {
+                Deck.ResetCards();
+                CheckPixs();
+                FillBoard();
+                AddPoints();
+                ResetBoard();
+            }
         }
 
         public static void FillBoard()
@@ -82,9 +84,13 @@ namespace Game
             // en ny spel yta
         }
 
-        public static void CheckPixs()
+        public static bool CheckPixs()
         {
-            if (Player.Pix >= 100);
+            if (Player.Pix < 100 || Computer.Pix < 100)
+                return false;
+            else
+                return true;
+
         }
 
         public static void CheckCardsLeft()

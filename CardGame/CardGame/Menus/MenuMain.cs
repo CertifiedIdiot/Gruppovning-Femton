@@ -27,6 +27,7 @@ namespace Menus
 
         private static void PrintMenu() //kommer att göra den lite snyggare
         {
+            MenuHeader();
             Console.WriteLine("1. Start game");
             Console.WriteLine("2. High score");
             Console.WriteLine("3. Exit");
@@ -35,7 +36,7 @@ namespace Menus
 
         private static void MenuHeader()
         {
-            Console.WriteLine("");
+            Console.WriteLine("\tMENU");
         }
     }
 }

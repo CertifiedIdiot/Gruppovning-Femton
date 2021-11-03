@@ -12,55 +12,64 @@ namespace Menus
 
         public static void Start()
         {
-            ScoreBoard();
+            PrintHighScore();
+            UpdateHighScore();
+            
         }
 
-        public static void SaveScore(string name, int computerScore, int playerScore)
+        public static void SaveScore(string name, int computerPoints, int playerPoints)
         {
-            playerScore Score = new playerScore();
+            PlayerScore Score = new();
 
-            if (playerScore > computerScore)
+            if (playerPoints > computerPoints)
             {
-               
+                Score.Name = name;
+                Score.Points = playerPoints;
             }
-            if (computerScore > playerScore)
+            if (computerPoints > playerPoints)
             {
-                
+                Score.Name = "Computer";
+                Score.Points = computerPoints;              
             }
 
-            //spara namn och score på listan
-
-            //jämför den nya scoren med alla andra på listan
-
-            //om den är högre än första, andra eller tredje --> lägg den i listan
+            HighScoreList.Add(Score);
+            
         }
 
-        private static void UpdateHighScore() 
+        private static void UpdateHighScore() //HighScoreList.OrderBy(q => q.Points);
         {
-            if (playerScore >= HighScoreList[2])
+            bool changed = false;
+            do
             {
-                HighScoreList.Add(name, playerScore); //sparar till listan, men ersätter inte något?
-            }
+                changed = false;
+                for (int i = 0; i != HighScoreList.Count - 1; i++)
+                {
+                    if (HighScoreList[i].Points < HighScoreList[i + 1].Points)
+                    {
+                        var tempVar = HighScoreList[i].Points;
+                        HighScoreList[i].Points = HighScoreList[i + 1].Points;
+                        HighScoreList[i + 1].Points = tempVar;
+                        changed = true;
+                    }
+                }
+            } while (changed == true);
+
             //om den är mindre än tredje --> lägg den inte in i listan
         }
 
-            //HighScoreList.Add("player1", 3); //test
-            //HighScoreList.Add("player2", 2); 
-            //HighScoreList.Add("player3", 1); 
-         
-        }
+        //HighScoreList.Add("player1", 3); //test
+        //HighScoreList.Add("player2", 2); 
+        //HighScoreList.Add("player3", 1); 
 
-        private static void ScoreBoard() 
+        private static void PrintHighScore()
         {
             Console.WriteLine("\tHIGHSCORE");
 
             foreach (var score in HighScoreList)
             {
-                Console.WriteLine("Name: " + score.Key + " Score: " + score.Value);
+                Console.WriteLine("Name: " + score.Name + " Score: " + score.Points);
             }
-            
         }
-    }
-    
-
+    }       
 }
+    
