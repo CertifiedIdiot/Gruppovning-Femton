@@ -12,7 +12,7 @@ namespace Graphics
 
     class DisplayGameBoard
     {
-       // Prints out the entire gameboard.
+        // Prints out the entire gameboard with updated cards.
         public static void ShowBoard()
         {
             DrawnCard datorCard1, datorCard2, datorCard3, datorCard4, datorCard5;
@@ -37,7 +37,7 @@ namespace Graphics
 
 
 
-
+        // Refactored mess.
         private static void GetPlayerCards(out DrawnCard playerCard1, out DrawnCard playerCard2, out DrawnCard playerCard3, out DrawnCard playerCard4, out DrawnCard playerCard5)
         {
             playerCard1 = new(PlayerGameBoard[0]);
@@ -56,12 +56,13 @@ namespace Graphics
             datorCard5 = new(ComputerGameBoard[4]);
         }
 
-        //Card width + 4 spaces increase for each card
+
+
         private static void PrintPlayerSide(DrawnCard playerCard1, DrawnCard playerCard2, DrawnCard playerCard3, DrawnCard playerCard4, DrawnCard playerCard5)
         {
             PrintPlayerCards(16);
             PrintPlayerPix(97, 21);
-
+            // Card width + 4 spaces increase for each card
             PrintCard(20, 18, playerCard1.ConstructedCard);
             PrintCard(35, 18, playerCard2.ConstructedCard);
             PrintCard(50, 18, playerCard3.ConstructedCard);
@@ -73,7 +74,7 @@ namespace Graphics
         {
             PrintComputerCards(5);
             PrintComputerPix(97, 10);
-            
+            // Card width + 4 spaces increase for each card
             PrintCard(20, 7, datorCard1.ConstructedCard);
             PrintCard(35, 7, datorCard2.ConstructedCard);
             PrintCard(50, 7, datorCard3.ConstructedCard);
@@ -103,19 +104,19 @@ namespace Graphics
         private static void PrintComputerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Opponent pix: {}  ]"); // TODO: Get from current computer pix
+            Console.WriteLine($"[Opponent pix: {Computer.Pix}  ]"); // TODO: Get from current computer pix
         }
 
         private static void PrintComputerCards(int posY)
         {
 
             Console.CursorTop = posY;
-            CenterWriteLine("[  Card Value: 10  ]"); // TODO: Get link to current computer value
+            CenterWriteLine($"[  Card Value: {Computer.CardSum}  ]"); // TODO: Get link to current computer sum
         }
         private static void PrintPlayerCards(int posY)
         {
             Console.CursorTop = posY;
-            CenterWriteLine("[  Card Value: 10  ]"); // TODO: Get link to current player value
+            CenterWriteLine($"[  Card Value: {Player.CardSum}  ]"); // TODO: Get link to current player sum
         }
 
 
