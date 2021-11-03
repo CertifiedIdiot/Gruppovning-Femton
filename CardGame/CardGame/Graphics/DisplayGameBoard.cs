@@ -12,51 +12,74 @@ namespace Graphics
 
     class DisplayGameBoard
     {
-       
+       // Prints out the entire gameboard.
         public static void ShowBoard()
         {
+            DrawnCard datorCard1, datorCard2, datorCard3, datorCard4, datorCard5;
+            GetComputerCards(out datorCard1, out datorCard2, out datorCard3, out datorCard4, out datorCard5);
+            DrawnCard playerCard1, playerCard2, playerCard3, playerCard4, playerCard5;
+            GetPlayerCards(out playerCard1, out playerCard2, out playerCard3, out playerCard4, out playerCard5);
 
-            
-            DrawnCard datorCard1 = new(ComputerGameBoard[0]);
-            DrawnCard datorCard2 = new(ComputerGameBoard[1]);
-            DrawnCard datorCard3 = new(ComputerGameBoard[2]);
-            DrawnCard datorCard4 = new(ComputerGameBoard[3]);
-            DrawnCard datorCard5 = new(ComputerGameBoard[4]);
-
-            DrawnCard playerCard1 = new(PlayerGameBoard[0]);
-            DrawnCard playerCard2 = new(PlayerGameBoard[1]);
-            DrawnCard playerCard3 = new(PlayerGameBoard[2]);
-            DrawnCard playerCard4 = new(PlayerGameBoard[3]);
-            DrawnCard playerCard5 = new(PlayerGameBoard[4]);
-            
-
+            // Print background ASCII
             WriteLineColour(artCardTable, ConsoleColor.DarkGreen);
-            //Card width + 4 spaces increase for each card
-            // Top row
-            PrintTopCardCount(5);
-            PrintComputerPix(97, 10);
-            // Måla upp kort för varje position. Behöver ny DrawnCard instansiering för varje kort. Onödigt.
-            PrintCard(20, 7, datorCard1.ConstructedCard);     
-            PrintCard(35, 7, datorCard2.ConstructedCard);
-            PrintCard(50, 7, datorCard3.ConstructedCard);
-            PrintCard(65, 7, datorCard4.ConstructedCard);
-            PrintCard(80, 7, datorCard5.ConstructedCard);
-            // Bottom row
-            PrintBottomCardCount(16);
+            // Prints the computer card graphics + value + pix
+            PrintComputerSide(datorCard1, datorCard2, datorCard3, datorCard4, datorCard5);
+            // Prints the player card graphics + value + pix
+            PrintPlayerSide(playerCard1, playerCard2, playerCard3, playerCard4, playerCard5);
+
+            Console.WriteLine();
+
+            Console.WriteLine();
+
+            CenterWriteLine("Text placeholder?");
+        }
+
+
+
+
+
+        private static void GetPlayerCards(out DrawnCard playerCard1, out DrawnCard playerCard2, out DrawnCard playerCard3, out DrawnCard playerCard4, out DrawnCard playerCard5)
+        {
+            playerCard1 = new(PlayerGameBoard[0]);
+            playerCard2 = new(PlayerGameBoard[1]);
+            playerCard3 = new(PlayerGameBoard[2]);
+            playerCard4 = new(PlayerGameBoard[3]);
+            playerCard5 = new(PlayerGameBoard[4]);
+        }
+
+        private static void GetComputerCards(out DrawnCard datorCard1, out DrawnCard datorCard2, out DrawnCard datorCard3, out DrawnCard datorCard4, out DrawnCard datorCard5)
+        {
+            datorCard1 = new(ComputerGameBoard[0]);
+            datorCard2 = new(ComputerGameBoard[1]);
+            datorCard3 = new(ComputerGameBoard[2]);
+            datorCard4 = new(ComputerGameBoard[3]);
+            datorCard5 = new(ComputerGameBoard[4]);
+        }
+
+        //Card width + 4 spaces increase for each card
+        private static void PrintPlayerSide(DrawnCard playerCard1, DrawnCard playerCard2, DrawnCard playerCard3, DrawnCard playerCard4, DrawnCard playerCard5)
+        {
+            PrintPlayerCards(16);
             PrintPlayerPix(97, 21);
+
             PrintCard(20, 18, playerCard1.ConstructedCard);
             PrintCard(35, 18, playerCard2.ConstructedCard);
             PrintCard(50, 18, playerCard3.ConstructedCard);
             PrintCard(65, 18, playerCard4.ConstructedCard);
             PrintCard(80, 18, playerCard5.ConstructedCard);
-
-            Console.WriteLine();
-            
-            Console.WriteLine();
-
-            CenterWriteLine("Text placeholder");
         }
-        
+
+        private static void PrintComputerSide(DrawnCard datorCard1, DrawnCard datorCard2, DrawnCard datorCard3, DrawnCard datorCard4, DrawnCard datorCard5)
+        {
+            PrintComputerCards(5);
+            PrintComputerPix(97, 10);
+            
+            PrintCard(20, 7, datorCard1.ConstructedCard);
+            PrintCard(35, 7, datorCard2.ConstructedCard);
+            PrintCard(50, 7, datorCard3.ConstructedCard);
+            PrintCard(65, 7, datorCard4.ConstructedCard);
+            PrintCard(80, 7, datorCard5.ConstructedCard);
+        }
 
 
         private static void PrintCard(int posY, int posX, string[] card)
@@ -74,25 +97,25 @@ namespace Graphics
         private static void PrintPlayerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Your pix: {PixsPlayer}  ]");
+            Console.WriteLine($"[Your pix: {Player.Pix}  ]"); // TODO: Get from current player pix
         }
 
         private static void PrintComputerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Opponent pix: {PixsComputer}  ]");
+            Console.WriteLine($"[Opponent pix: {}  ]"); // TODO: Get from current computer pix
         }
 
-        private static void PrintTopCardCount(int posY)
+        private static void PrintComputerCards(int posY)
         {
 
             Console.CursorTop = posY;
-            CenterWriteLine("[  Card Value: 10  ]");
+            CenterWriteLine("[  Card Value: 10  ]"); // TODO: Get link to current computer value
         }
-        private static void PrintBottomCardCount(int posY)
+        private static void PrintPlayerCards(int posY)
         {
             Console.CursorTop = posY;
-            CenterWriteLine("[  Card Value: 10  ]");
+            CenterWriteLine("[  Card Value: 10  ]"); // TODO: Get link to current player value
         }
 
 
