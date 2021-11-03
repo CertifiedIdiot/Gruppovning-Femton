@@ -34,7 +34,7 @@ namespace Graphics
 
         }
 
-        // Returns the populated array.
+        // Each card currently in the list gets added to an array with room for 5 cards. Returns the populated array.
         private static DrawnCard[] PopulatePlayerCardArray()
         {
             DrawnCard[] playerDrawCards = new DrawnCard[5];

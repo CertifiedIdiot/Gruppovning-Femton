@@ -10,12 +10,12 @@ namespace Graphics
     //  ♠       ♦       ♥       ♣
     public class DrawnCard
     {
-        public string CardTop { get; set; } = "┌---------┐";
-        public string CardNumberTop { get; set; } = "| #       |";
-        public string CardMiddle { get; set; } = "|         |";
-        public string CardMiddleSuit { get; set; } = "|    *    |";
-        public string CardNumberBottom { get; set; } = "|       # |";
-        public string CardBottom { get; set; } = "└---------┘";
+        public string CardTop { get; set; } = "┌─────────┐";
+        public string CardNumberTop { get; set; } = "│ #       │";
+        public string CardMiddle { get; set; } = "│         │";
+        public string CardMiddleSuit { get; set; } = "│    *    │";
+        public string CardNumberBottom { get; set; } = "│       # │";
+        public string CardBottom { get; set; } = "└─────────┘";
         public string[] ConstructedCard { get; set; }
         internal Game.Card ChosenCard { get; set; }
         
@@ -33,8 +33,8 @@ namespace Graphics
         public string GetCardNumberTop()
         {
             string cardNumber = GetValue();  
-            string cardNumberTop = $"| {cardNumber}       |";
-            string cardNumberTopTen = $"| {cardNumber}      |";
+            string cardNumberTop = $"│ {cardNumber}       │";
+            string cardNumberTopTen = $"│ {cardNumber}      │";
             if (cardNumber == "10")
                 return cardNumberTopTen;
             else
@@ -44,8 +44,8 @@ namespace Graphics
         public string GetCardNumberBottom()
         {
             string cardNumber = GetValue();
-            string cardNumberBottom = $"|       {cardNumber} |";
-            string cardNumberBottomTen = $"|      {cardNumber} |";
+            string cardNumberBottom = $"│       {cardNumber} │";
+            string cardNumberBottomTen = $"│      {cardNumber} │";
             if (cardNumber == "10")
                 return cardNumberBottomTen;
             else
@@ -56,7 +56,7 @@ namespace Graphics
         public string GetCardMiddleSuit()
         {
             char cardSuit = GetSuit();   
-            string cardSuitString = $"|    {cardSuit}    |";
+            string cardSuitString = $"│    {cardSuit}    │";
             return cardSuitString;
         }
 
