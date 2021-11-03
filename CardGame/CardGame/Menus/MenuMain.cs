@@ -10,10 +10,32 @@ namespace Menus
     {
         public static void Start()
         {
-            Console.WriteLine("1. Start game");
-            Console.WriteLine("2. High score");
+            PrintMenu();
+
+            var menuInput = 0;
+            int.TryParse(Console.ReadLine(), out menuInput);
+
+            switch (menuInput)
+            {
+                case 1: Game.Game.Start(); break;
+                case 2: MenuHighScore.Start(); break;
+                case 3: Console.WriteLine("Thank you for playing!"); Environment.Exit(0); break;
+                default: Console.WriteLine("Invalid input"); break;
+            }
 
         }
-        
+
+        private static void PrintMenu()
+        {
+            Console.WriteLine("1. Start game");
+            Console.WriteLine("2. High score");
+            Console.WriteLine("3. Exit");
+            Console.WriteLine(">> ");
+        }
+
+        private static void MenuHeader();
+        {
+            Console.WriteLine("");
+        }
     }
 }

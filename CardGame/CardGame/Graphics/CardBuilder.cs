@@ -8,7 +8,7 @@ namespace Graphics
 {
     // Suit symbols 
     //  ♠       ♦       ♥       ♣
-    public class CardBuilder
+    public class DrawnCard
     {
         public string CardTop { get; set; } = "┌---------┐";
         public string CardNumberTop { get; set; } = "| #       |";
@@ -18,7 +18,7 @@ namespace Graphics
         public string CardBottom { get; set; } = "└---------┘";
         public string[] ConstructedCard { get; set; }
         
-        public CardBuilder()
+        public DrawnCard()
         {
             CardNumberTop = GetCardNumberTop();
             CardMiddleSuit = GetCardMiddleSuit();
@@ -52,17 +52,19 @@ namespace Graphics
 
         public int GetValue(int placeholderDelete)
         {
-            // TODO: Code to get card value from drawn card and return
+            // TODO: Code to get card value from drawn card and return. From chosen cards in game-class?
             return placeholderDelete;
 
         }
 
         public char GetSuit(char placeholderDelete)
         {
-            // TODO: Code to get card suit from drawn card and return.
+            // TODO: Code to get card suit from drawn card and return. From chosen cards in game-class?
             return placeholderDelete;
         }
 
+
+        // Constructs card top to bottom.
         public string[] CardArray()
         {
             string[] constructedCard = { CardTop, CardNumberTop, CardMiddle, CardMiddleSuit, CardMiddle, CardNumberBottom, CardBottom };

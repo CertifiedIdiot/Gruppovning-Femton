@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
+using static Graphics.DisplayHelper;
+using static Graphics.CardArt;
+using static Game.Game;
 
 namespace Graphics
 {
@@ -15,34 +16,35 @@ namespace Graphics
         public static void ShowBoard()
         {
 
-            CardBuilder fiveOfSpadesTest = new();
+            DrawnCard KortEtt = new();
+            DrawnCard KortTvå = new();
 
             WriteLineColour(artCardTable, ConsoleColor.DarkGreen);
             //Card width + 4 spaces increase for each card
             // Top row
             PrintTopCardCount(5);
             PrintComputerScore(97, 10);
-            PrintCard(20, 7, fiveOfSpadesTest.ConstructedCard);     // Temp solution, meant to be more automated.
-            PrintCard(35, 7, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(50, 7, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(65, 7, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(80, 7, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(20, 7, GameBoard[0]);     // Måla upp kort för varje position. Behöver ny DrawnCard instansiering för varje kort. Onödigt.
+            PrintCard(35, 7, KortTvå.ConstructedCard);
+            PrintCard(50, 7, KortEtt.ConstructedCard);
+            PrintCard(65, 7, KortEtt.ConstructedCard);
+            PrintCard(80, 7, KortEtt.ConstructedCard);
             // Bottom row
             PrintBottomCardCount(16);
             PrintPlayerScore(97, 21);
-            PrintCard(20, 18, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(35, 18, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(50, 18, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(65, 18, fiveOfSpadesTest.ConstructedCard);
-            PrintCard(80, 18, fiveOfSpadesTest.ConstructedCard);
+            PrintCard(20, 18, KortEtt.ConstructedCard);
+            PrintCard(35, 18, KortEtt.ConstructedCard);
+            PrintCard(50, 18, KortEtt.ConstructedCard);
+            PrintCard(65, 18, KortEtt.ConstructedCard);
+            PrintCard(80, 18, KortEtt.ConstructedCard);
 
             Console.WriteLine();
-
+            
             Console.WriteLine();
 
             CenterWriteLine("Press [Enter] to get a card.");
         }
-
+        
 
 
         private static void PrintCard(int posY, int posX, string[] card)
@@ -54,6 +56,7 @@ namespace Graphics
                 Console.WriteLine(cardRow);
             }
         }
+
 
 
         private static void PrintPlayerScore(int posY, int posX)
