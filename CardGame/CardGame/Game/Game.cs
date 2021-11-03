@@ -24,7 +24,11 @@ namespace Game
                 CheckPixs();
                 FillBoard();
                 AddPoints();
+                DisplayGameBoard.ShowBoard();
                 DisplayHelper.CenterPressEnterToContinue();
+
+                Computer.CardSum = 0;
+                Player.CardSum = 0;
             }
         }
 
@@ -41,8 +45,6 @@ namespace Game
             {
                 ComputerGameBoard[i] = Deck.DrawCard();
             }
-
-            DisplayGameBoard.ShowBoard();
 
         }
 
@@ -84,8 +86,6 @@ namespace Game
                 Computer.Pix += 100;
             }
 
-            Computer.CardSum = 0;
-            Player.CardSum = 0;
         }
 
         public static bool CheckPixs()

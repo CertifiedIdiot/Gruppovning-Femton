@@ -45,7 +45,7 @@ namespace Graphics
         {
             string cardNumber = GetValue();
             string cardNumberBottom = $"|       {cardNumber} |";
-            string cardNumberBottomTen = $"| {cardNumber}      |";
+            string cardNumberBottomTen = $"|      {cardNumber} |";
             if (cardNumber == "10")
                 return cardNumberBottomTen;
             else
@@ -71,7 +71,7 @@ namespace Graphics
             else if (value == "13")
                 return "K";
             else
-            return value;
+                return value;
         }
 
         public char GetSuit()

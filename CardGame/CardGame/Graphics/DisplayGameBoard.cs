@@ -31,7 +31,6 @@ namespace Graphics
 
             Console.WriteLine();
 
-            CenterWriteLine("Text placeholder?");
         }
 
 
@@ -99,27 +98,27 @@ namespace Graphics
         {
             
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Your pix: {Player.Pix}  ]"); // TODO: Get from current player pix
+            Console.WriteLine($"[Your pix: {Player.Pix}  ]"); 
         }
 
         private static void PrintComputerPix(int posY, int posX)
         {
             Console.SetCursorPosition(posY, posX);
-            Console.WriteLine($"[Opponent pix: {Computer.Pix}  ]"); // TODO: Get from current computer pix
+            Console.WriteLine($"[Opponent pix: {Computer.Pix}  ]"); 
         }
 
         private static void PrintComputerCards(int posY)
         {
 
             Console.CursorTop = posY;
-            CenterWriteLine($"[  Card Value: {Computer.CardSum}  ]"); // TODO: Get link to current computer sum
+            CenterWriteLine($"[  Card Value: {Computer.CardSum}  ]"); 
         }
         private static void PrintPlayerCards(int posY)
         {
             Console.CursorTop = posY;
-            CenterWriteLine($"[  Card Value: {Player.CardSum}  ]"); // TODO: Get link to current player sum
+            CenterWriteLine($"[  Card Value: {Player.CardSum}  ]"); 
         }
-
+        
 
     }
 }

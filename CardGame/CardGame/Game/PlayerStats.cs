@@ -8,8 +8,8 @@ namespace Game
 {
     class PlayerStats
     {
-        public int Points=0;
-        public int CardSum=0;
-        public int Pix=500;
+        public int Points = 0;
+        public int CardSum = 0;
+        public int Pix = 500;
     }
 }
