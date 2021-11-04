@@ -51,7 +51,7 @@ namespace Game
 
                     playerTurn = false;
                 }
-                else if(!playerTurn && Computer.CardSum < 15)
+                else if(!playerTurn && Computer.CardSum)
                 {
                     Computer.CardSum += card.Number;
                     ComputerGameBoard.Add(card);
@@ -66,7 +66,7 @@ namespace Game
                     playerTurn = true;
                 if (Player.CardSum >= 15)
                     playerTurn = false;
-                if (Player.CardSum >= 15 && Computer.CardSum >= 15)
+                if (Player.CardSum >= 15 && Computer.CardSum >= 15 || PlayerGameBoard.Count <= 5 || ComputerGameBoard.Count <= 5)
                     break;
             }
         }
@@ -135,7 +135,7 @@ namespace Game
             {
                 DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n");
             }
-            
+
             DisplayHelper.CenterPressEnterToContinue();
             Menus.MenuHighScore.SaveScore(Computer.Points, Player.Points);
             Menus.MenuMain.Start();
