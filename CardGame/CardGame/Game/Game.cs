@@ -19,6 +19,10 @@ namespace Game
             Deck.ResetCards();
             Console.Clear();
 
+            //Begin the game by "paying" 100 pixs each
+            Player.Pix -= 100;
+            Computer.Pix -= 100;
+
             while (Deck.CheckCardsLeft(10))
             {
                 CheckPixs();
@@ -43,7 +47,7 @@ namespace Game
             bool playerTurn = false;
             foreach (var card in Deck.DrawCard(10))
             {
-
+                               
                 if (playerTurn && Player.CardSum < 15)
                 {
                     Player.CardSum += card.Number;
@@ -77,15 +81,13 @@ namespace Game
             {
                 Console.WriteLine("You won! You get one point.");
                 Player.Points++;
-                Player.Pix += 100;
-                Computer.Pix -= 100;
+                
             }
             else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vann en runda
             {
                 Console.WriteLine("Computer won!");
                 Computer.Points++;
-                Player.Pix -= 100;
-                Computer.Pix += 100;
+                
             }
             else if (Computer.CardSum == 15 && Player.CardSum == 15) // Båda vinner
             {
@@ -98,7 +100,8 @@ namespace Game
         {
             if (Player.Pix < 100 || Computer.Pix < 100)
             {
-                DisplayHelper.CenterWriteLine("Pengar slut");
+                DisplayHelper.CenterWriteLine("There is not enough of pix to play!");
+                DisplayHelper.CenterPressEnterToContinue();
 
                 EndGame();
 
@@ -114,7 +117,8 @@ namespace Game
         {
             if(!Deck.CheckCardsLeft(10))
             {
-                DisplayHelper.CenterWriteLine("Slut på kort");
+                DisplayHelper.CenterWriteLine("There is not enough of cards to play! This round is over.");
+                DisplayHelper.CenterPressEnterToContinue();
 
                 EndGame();
             }
@@ -125,15 +129,21 @@ namespace Game
             Console.Clear();
             if(Player.Points > Computer.Points)
             {
-                DisplayHelper.CenterWriteLine("Congratulations! You Won\n");
+                DisplayHelper.CenterWriteLine("Congratulations! You Won\n"); //Player gets pix
+                Player.Pix += 100;
+                Computer.Pix -= 100;
             }
             else if(Computer.Points > Player.Points)
             {
-                Console.WriteLine("You Lost... Better Luck Next Time\n");
+                Console.WriteLine("You Lost... Better Luck Next Time\n"); //Computer gets pix
+                Player.Pix -= 100;
+                Computer.Pix += 100;
             }
             else
             {
-                DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n");
+                DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n"); //Divide pix equally
+                Player.Pix += 100;
+                Computer.Pix += 100;
             }
 
             DisplayHelper.CenterPressEnterToContinue();

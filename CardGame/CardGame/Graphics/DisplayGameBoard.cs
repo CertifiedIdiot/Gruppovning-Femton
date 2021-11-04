@@ -61,7 +61,8 @@ namespace Graphics
             // Card width + 4 spaces increase for each card
             PrintPlayerCardSum(16); // Prints Player Card Value
             PrintPlayerPix(97, 21); // Prints player pix
-            
+            PrintPlayerPoints(97, 18); //Print player points
+
             // If the array index is not null, prints the corresponding card at the chosen position (if the array does not have anything in it at that position, nothing will be printed)
             if (drawPlayerCards[0] != null)
                 PrintCard(21, 18, drawPlayerCards[0].ConstructedCard);
@@ -79,7 +80,8 @@ namespace Graphics
         {
             PrintComputerCardSum(5);
             PrintComputerPix(97, 10);
-            
+            PrintComputerPoints(97, 7);
+
             if (drawComputerCards[0] != null)
                 PrintCard(21, 7, drawComputerCards[0].ConstructedCard);
             if (drawComputerCards[1] != null)
@@ -109,7 +111,7 @@ namespace Graphics
         {
             
             Console.SetCursorPosition(posY, posX);
-            WriteLineColour($"Your pix:", ConsoleColor.DarkCyan);
+            WriteLineColour($"Your Pix:", ConsoleColor.DarkCyan);
             Console.SetCursorPosition(posY, posX + 1);
             WriteLineColour($"[{Player.Pix}]", ConsoleColor.Yellow);
         }
@@ -120,6 +122,23 @@ namespace Graphics
             WriteLineColour($"Opponent Pix:", ConsoleColor.Red);
             Console.SetCursorPosition(posY, posX + 1);
             WriteLineColour($"[{Computer.Pix}]", ConsoleColor.Yellow);
+        }
+
+        private static void PrintPlayerPoints(int posY, int posX)
+        {
+
+            Console.SetCursorPosition(posY, posX);
+            WriteLineColour($"Your Points:", ConsoleColor.DarkCyan);
+            Console.SetCursorPosition(posY, posX + 1);
+            WriteLineColour($"[{Player.Points}]", ConsoleColor.Yellow);
+        }
+
+        private static void PrintComputerPoints(int posY, int posX)
+        {
+            Console.SetCursorPosition(posY, posX);
+            WriteLineColour($"Opponent Points:", ConsoleColor.Red);
+            Console.SetCursorPosition(posY, posX + 1);
+            WriteLineColour($"[{Computer.Points}]", ConsoleColor.Yellow);
         }
 
         private static void PrintComputerCardSum(int posY)

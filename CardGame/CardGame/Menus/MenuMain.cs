@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CardGame;
+using Game;
 
 namespace Menus
 {
     static class MenuMain
     {
+        public static PlayerStats player = new();
+        public static PlayerStats computer = new();
         public static void Start()
         {
             PrintMenu();
 
+            
             while (true)
             {
                 switch (InputHandler.ConsoleToInt())
@@ -42,6 +46,7 @@ namespace Menus
         private static void PrintMenu() //kommer att göra den lite snyggare
         {
             MenuHeader();
+            Console.WriteLine("Welcome to this card game! Each round costs 100 pix.");
             Console.WriteLine("1. Start game");
             Console.WriteLine("2. High score");
             Console.WriteLine("3. Exit\n");

@@ -80,6 +80,7 @@ namespace Game
 
         private static void FillDeck()
         {
+                      
             int suitNumber = 0;
             int cardNumber = 1;
             for (int i = 0; i <= 52; i++)
