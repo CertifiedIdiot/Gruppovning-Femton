@@ -13,7 +13,7 @@ namespace Menus
 
         public static void Start()
         {
-            HighScoreList.OrderBy(x => x.Points);
+            HighScoreList=HighScoreList.OrderByDescending(x => x.Points).ToList();
             PrintHighScore();
             BackToMenuMain();
         }

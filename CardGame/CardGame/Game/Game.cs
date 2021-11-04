@@ -66,7 +66,7 @@ namespace Game
                     playerTurn = true;
                 if (Player.CardSum >= 15)
                     playerTurn = false;
-                if (Player.CardSum >= 15 && Computer.CardSum >= 15 || PlayerGameBoard.Count <= 5 || ComputerGameBoard.Count <= 5)
+                if (Player.CardSum >= 15 && Computer.CardSum >= 15 || PlayerGameBoard.Count >= 5 || ComputerGameBoard.Count >= 5)
                     break;
             }
         }
