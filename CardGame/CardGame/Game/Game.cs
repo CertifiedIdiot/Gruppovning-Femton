@@ -51,7 +51,7 @@ namespace Game
 
                     playerTurn = false;
                 }
-                else if(!playerTurn && Computer.CardSum)
+                else if(!playerTurn && Computer.CardSum < 15)
                 {
                     Computer.CardSum += card.Number;
                     ComputerGameBoard.Add(card);
