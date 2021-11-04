@@ -14,7 +14,7 @@ namespace Menus
         public static void Start()
         {
             PrintHighScore();
-            UpdateHighScore();
+            OrderHighScore();
             BackToMenu();
         }
 
@@ -37,13 +37,21 @@ namespace Menus
             
         }
 
-        private static void UpdateHighScore() //HighScoreList.OrderBy(q => q.Points);
+        //HighScoreList.OrderBy() => );
+
+        // Sorterar ej korrect
+        private static void OrderHighScore()
         {
+            if(!HighScoreList.Any())
+            {
+                return;
+            }
+
             bool changed = false;
             do
             {
                 changed = false;
-                for (int i = 0; i != HighScoreList.Count - 1; i++)
+                for (int i = 0; i != HighScoreList.Count - 2; i++)
                 {
                     if (HighScoreList[i].Points < HighScoreList[i + 1].Points)
                     {
@@ -64,17 +72,23 @@ namespace Menus
 
         private static void PrintHighScore()
         {
-            Console.WriteLine("\tHIGHSCORE");
-
+            MenuHighScoreHeader();
             foreach (var score in HighScoreList)
             {
                 Console.WriteLine("Name: " + score.Name + " Score: " + score.Points);
             }
         }
 
+        private static void MenuHighScoreHeader()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("\tHIGHSCORE");
+            Console.ResetColor();
+        }
+
         private static void BackToMenu()
         {
-            Console.WriteLine("Press any key to go back to MENU");
+            Console.WriteLine("\n\nPress any key to go back to MENU");
             Console.ReadKey();
             Console.Clear();
             Menus.MenuMain.Start();
