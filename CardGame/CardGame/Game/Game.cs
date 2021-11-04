@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Graphics;
 using CardGame;
+using System.Diagnostics;
 
 namespace Game
 {
@@ -10,43 +11,28 @@ namespace Game
         public static PlayerStats Player = new();
         public static PlayerStats Computer = new();
 
-        public static List<Card> PlayerGameBoard = new List<Card>(new Card[5]);
-        public static List<Card> ComputerGameBoard = new List<Card>(new Card[5]);
+        public static List<Card> PlayerGameBoard = new List<Card>();
+        public static List<Card> ComputerGameBoard = new List<Card>();
      
         public static void Start()
         {
             Deck.ResetCards();
             Console.Clear();
 
-            // <insert game loop here> 
             while (Deck.CheckCardsLeft(10))
             {
-                /*
-                 
-                CheckPixs();
-                FillBoard();
-                AddPoints();
-                
-                PlayerGameBoard = new List<Card>;
-                ComputerGameBoard = new List<Card>;
-                Computer.CardSum = 0;
-                Player.CardSum = 0;
-
-                DisplayHelper.CenterPressEnterToContinue();
-                 */
-
-
-
-
-
                 CheckPixs();
                 FillBoard();
                 AddPoints();
                 DisplayGameBoard.ShowBoard();
-                DisplayHelper.CenterPressEnterToContinue();
-
+                
+                
+                PlayerGameBoard = new List<Card>();
+                ComputerGameBoard = new List<Card>();
                 Computer.CardSum = 0;
                 Player.CardSum = 0;
+
+                DisplayHelper.CenterPressEnterToContinue();
             }
 
             EndGame();
@@ -54,82 +40,58 @@ namespace Game
 
         public static void FillBoard()
         {
-            /*
-            foreach(var card in Deck.DrawCard(5))
+            bool playerTurn = false;
+            foreach (var card in Deck.DrawCard(10))
             {
-                if(Player.Points!=15)
+
+                if (playerTurn && Player.CardSum < 15)
                 {
-                    PlayerGameBoard.Add();
-                }
-                
-                DisplayGameBoard.ShowBoard();
-            }
+                    Player.CardSum += card.Number;
+                    PlayerGameBoard.Add(card);
 
-            foreach(var card in Deck.DrawCard(5))
-            {
-                if(Computer.Points!=15)
+                    playerTurn = false;
+                }
+                else if(!playerTurn && Computer.CardSum < 15)
                 {
-                    ComputerGameBoard.Add();
+                    Computer.CardSum += card.Number;
+                    ComputerGameBoard.Add(card);
+
+                    playerTurn = true;
                 }
-                
+
                 DisplayGameBoard.ShowBoard();
-            }
-             
-             
-             
-             */
-            //5 cards for the player
-            for (int i = 0; i < 5; i++)
-            {
-                PlayerGameBoard[i] = Deck.DrawCard();
-            }
+                DisplayHelper.CenterPressEnterToContinue();
 
-            //5 cards for the computer
-            for (int i = 0; i < 5; i++)
-            {
-                ComputerGameBoard[i] = Deck.DrawCard();
+                if (Computer.CardSum >= 15)
+                    playerTurn = true;
+                if (Player.CardSum >= 15)
+                    playerTurn = false;
+                if (Player.CardSum >= 15 && Computer.CardSum >= 15)
+                    break;
             }
-
         }
 
         public static void AddPoints()
         {
-            // Loopa gameboard och se kort
-            // Kolla vem som har fått poäng, om någon alls
-            // Dela ut rätt mängd pixs
-            for (int i = 0; i < PlayerGameBoard.Count; i++)
+            if (Player.CardSum == 15 && Computer.CardSum != 15) // Spelaren vann en runda
             {
-                Player.CardSum += PlayerGameBoard[i].Number;
-                Computer.CardSum += ComputerGameBoard[i].Number;
-            }
-
-            if (Player.CardSum == 15 && Computer.CardSum != 15) // Spelaren vinner
-            {
-                Console.WriteLine("You won! You get one point."); //visas upp på grafik
+                Console.WriteLine("You won! You get one point.");
                 Player.Points++;
+                Player.Pix += 100;
+                Computer.Pix -= 100;
             }
-            else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vinner
+            else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vann en runda
             {
-                Console.WriteLine("Computer won! You get one point."); //visas upp på grafik
+                Console.WriteLine("Computer won!");
                 Computer.Points++;
+                Player.Pix -= 100;
+                Computer.Pix += 100;
             }
             else if (Computer.CardSum == 15 && Player.CardSum == 15) // Båda vinner
             {
                 Player.Points++;
                 Computer.Points++;
             }
-
-            if (Player.Points > Computer.Points)
-            {
-                Player.Pix += 100;
-                Computer.Pix -= 100;
-            }
-            else if(Player.Points < Computer.Points)
-            {
-                Player.Pix -= 100;
-                Computer.Pix += 100;
-            }
-
         }
 
         public static bool CheckPixs()
@@ -137,6 +99,9 @@ namespace Game
             if (Player.Pix < 100 || Computer.Pix < 100)
             {
                 DisplayHelper.CenterWriteLine("Pengar slut");
+
+                EndGame();
+
                 return false;
             } 
             else
@@ -149,10 +114,10 @@ namespace Game
         {
             if(!Deck.CheckCardsLeft(10))
             {
+                DisplayHelper.CenterWriteLine("Slut på kort");
+
                 EndGame();
             }
-            // Har vi kort för att spela?
-            // Om inte endgame.
         }
 
         public static void EndGame()

@@ -50,6 +50,7 @@ namespace Graphics
             DrawnCard[] computerDrawCards = new DrawnCard[5];
             for (int i = 0; i < ComputerGameBoard.Count; i++)
             {
+                //List<object> tempList = new(new object[5]);
                 computerDrawCards[i] = new(ComputerGameBoard[i]);
             }
             return computerDrawCards;
