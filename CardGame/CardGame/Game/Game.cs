@@ -10,8 +10,8 @@ namespace Game
         public static PlayerStats Player = new();
         public static PlayerStats Computer = new();
 
-        public static List<Card> PlayerGameBoard = new List<Card>(new Card[5]);
-        public static List<Card> ComputerGameBoard = new List<Card>(new Card[5]);
+        public static List<Card> PlayerGameBoard = new List<Card>();//(new Card[5]);
+        public static List<Card> ComputerGameBoard = new List<Card>();//(new Card[5]);
      
         public static void Start()
         {
@@ -21,24 +21,26 @@ namespace Game
             // <insert game loop here> 
             while (Deck.CheckCardsLeft(10))
             {
-                /*
+                
                  
                 CheckPixs();
                 FillBoard();
                 AddPoints();
+                DisplayGameBoard.ShowBoard();
                 
-                PlayerGameBoard = new List<Card>;
-                ComputerGameBoard = new List<Card>;
+                
+                PlayerGameBoard = new List<Card>();
+                ComputerGameBoard = new List<Card>();
                 Computer.CardSum = 0;
                 Player.CardSum = 0;
 
                 DisplayHelper.CenterPressEnterToContinue();
-                 */
 
 
+                Deck.ResetCards();
 
 
-
+                /*
                 CheckPixs();
                 FillBoard();
                 AddPoints();
@@ -47,35 +49,40 @@ namespace Game
 
                 Computer.CardSum = 0;
                 Player.CardSum = 0;
+                */
             }
         }
 
         public static void FillBoard()
         {
-            /*
+            
             foreach(var card in Deck.DrawCard(5))
             {
-                if(Player.Points!=15)
-                {
-                    PlayerGameBoard.Add();
-                }
                 
-                DisplayGameBoard.ShowBoard();
+                if (Player.Points!=15)
+                {
+                    Player.Points += card.Number;
+                    PlayerGameBoard.Add(card);
+                }
+
+                //DisplayGameBoard.ShowBoard();
             }
 
             foreach(var card in Deck.DrawCard(5))
             {
-                if(Computer.Points!=15)
-                {
-                    ComputerGameBoard.Add();
-                }
                 
-                DisplayGameBoard.ShowBoard();
+                if (Computer.Points!=15)
+                {
+                    Player.Points += card.Number;
+                    ComputerGameBoard.Add(card);
+                }
+
+                //DisplayGameBoard.ShowBoard();
             }
              
              
              
-             */
+             /*
             //5 cards for the player
             for (int i = 0; i < 5; i++)
             {
@@ -87,6 +94,7 @@ namespace Game
             {
                 ComputerGameBoard[i] = Deck.DrawCard();
             }
+             */
 
         }
 
@@ -98,6 +106,11 @@ namespace Game
             for (int i = 0; i < PlayerGameBoard.Count; i++)
             {
                 Player.CardSum += PlayerGameBoard[i].Number;
+
+            }
+
+            for (int i = 0; i < ComputerGameBoard.Count; i++)
+            {
                 Computer.CardSum += ComputerGameBoard[i].Number;
             }
 
