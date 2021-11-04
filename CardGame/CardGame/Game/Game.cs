@@ -16,10 +16,13 @@ namespace Game
      
         public static void Start()
         {
+            Player.Points = 0;
+            Computer.Points = 0;
+            Player.Pix = 500;
+            Computer.Pix = 500;
             Deck.ResetCards();
             Console.Clear();
 
-            //Begin the game by "paying" 100 pixs each
             
             
 
@@ -34,7 +37,7 @@ namespace Game
                 ComputerGameBoard = new List<Card>();
                 Computer.CardSum = 0;
                 Player.CardSum = 0;
-
+                Console.CursorTop = Console.WindowHeight - 3;
                 DisplayHelper.CenterPressEnterToContinue();
             }
 
@@ -62,6 +65,7 @@ namespace Game
                 }
 
                 DisplayGameBoard.ShowBoard();
+                Console.CursorTop = Console.WindowHeight - 3;
                 DisplayHelper.CenterPressEnterToContinue();
 
                 if (Computer.CardSum >= 15)
@@ -106,7 +110,8 @@ namespace Game
         {
             if (Player.Pix < 100 || Computer.Pix < 100)
             {
-                DisplayHelper.CenterWriteLine("There is not enough of pix to play!");
+                Console.WriteLine("There is not enough pix to play!");
+                Console.CursorTop = Console.WindowHeight - 3;
                 DisplayHelper.CenterPressEnterToContinue();
 
                 EndGame();
@@ -123,7 +128,8 @@ namespace Game
         {
             if(!Deck.CheckCardsLeft(10))
             {
-                DisplayHelper.CenterWriteLine("There is not enough of cards to play! This round is over.");
+                Console.WriteLine("There is not enough cards to play! This round is over.");
+                Console.CursorTop = Console.WindowHeight - 3;
                 DisplayHelper.CenterPressEnterToContinue();
 
                 EndGame();
@@ -135,17 +141,17 @@ namespace Game
             Console.Clear();
             if (Player.Points > Computer.Points)
             {
-                DisplayHelper.CenterWriteLine("Congratulations! You Won\n");
+                DisplayHelper.MiddleWriteLine("Congratulations! You Won\n");
             }
             else if (Computer.Points > Player.Points)
             {
-                Console.WriteLine("You Lost... Better Luck Next Time\n");
+                DisplayHelper.MiddleWriteLine("You Lost... Better Luck Next Time\n");
             }
             else
             {
-                DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n");
+                DisplayHelper.MiddleWriteLine("Nobody Wins, Its A Draw\n");
             }
-
+            Console.CursorTop = Console.WindowHeight - 3;
             DisplayHelper.CenterPressEnterToContinue();
             Menus.MenuHighScore.SaveScore(Computer.Points, Player.Points);
             Menus.MenuMain.Start();
