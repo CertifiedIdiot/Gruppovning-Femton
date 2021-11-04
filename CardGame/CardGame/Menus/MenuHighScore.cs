@@ -76,6 +76,7 @@ namespace Menus
         {
             Console.WriteLine("Press any key to go back to MENU");
             Console.ReadKey();
+            Console.Clear();
             Menus.MenuMain.Start();
         }
     }       
