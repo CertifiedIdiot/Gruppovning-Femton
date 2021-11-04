@@ -48,6 +48,8 @@ namespace Game
                 Computer.CardSum = 0;
                 Player.CardSum = 0;
             }
+
+            EndGame();
         }
 
         public static void FillBoard()
