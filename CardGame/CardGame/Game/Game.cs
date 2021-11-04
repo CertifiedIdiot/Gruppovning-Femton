@@ -20,8 +20,8 @@ namespace Game
             Console.Clear();
 
             //Begin the game by "paying" 100 pixs each
-            Player.Pix -= 100;
-            Computer.Pix -= 100;
+            
+            
 
             while (Deck.CheckCardsLeft(10))
             {
@@ -85,13 +85,15 @@ namespace Game
             {
                 Console.WriteLine("You won! You get one point.");
                 Player.Points++;
-                
+                Player.Pix += 100;
+                Computer.Pix -= 100;
             }
             else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vann en runda
             {
                 Console.WriteLine("Computer won!");
                 Computer.Points++;
-                
+                Player.Pix -= 100;
+                Computer.Pix += 100;
             }
             else if (Computer.CardSum == 15 && Player.CardSum == 15) // Båda vinner
             {
@@ -131,23 +133,17 @@ namespace Game
         public static void EndGame()
         {
             Console.Clear();
-            if(Player.Points > Computer.Points)
+            if (Player.Points > Computer.Points)
             {
-                DisplayHelper.CenterWriteLine("Congratulations! You Won\n"); //Player gets pix
-                Player.Pix += 100;
-                Computer.Pix -= 100;
+                DisplayHelper.CenterWriteLine("Congratulations! You Won\n");
             }
-            else if(Computer.Points > Player.Points)
+            else if (Computer.Points > Player.Points)
             {
-                Console.WriteLine("You Lost... Better Luck Next Time\n"); //Computer gets pix
-                Player.Pix -= 100;
-                Computer.Pix += 100;
+                Console.WriteLine("You Lost... Better Luck Next Time\n");
             }
             else
             {
-                DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n"); //Divide pix equally
-                Player.Pix += 100;
-                Computer.Pix += 100;
+                DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n");
             }
 
             DisplayHelper.CenterPressEnterToContinue();
