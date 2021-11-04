@@ -13,59 +13,35 @@ namespace Menus
 
         public static void Start()
         {
+            HighScoreList.OrderBy(x => x.Points);
             PrintHighScore();
-            OrderHighScore();
-            BackToMenu();
+            BackToMenuMain();
         }
 
         public static void SaveScore(int computerPoints, int playerPoints)
         {
             PlayerScore Score = new();
+            bool update = false;
 
             if (playerPoints > computerPoints)
             {
                 Score.Name = PlayerName;
                 Score.Points = playerPoints;
+                update = true;
             }
             if (computerPoints > playerPoints)
             {
                 Score.Name = "Computer";
-                Score.Points = computerPoints;              
+                Score.Points = computerPoints;  
+                update = true;            
             }
 
-            HighScoreList.Add(Score);
-            
-        }
-
-        //HighScoreList.OrderBy() => );
-
-        // Sorterar ej korrect
-        private static void OrderHighScore()
-        {
-            if(!HighScoreList.Any())
+            if(update)
             {
-                return;
+                HighScoreList.Add(Score);
             }
-
-            bool changed = false;
-            do
-            {
-                changed = false;
-                for (int i = 0; i != HighScoreList.Count - 2; i++)
-                {
-                    if (HighScoreList[i].Points < HighScoreList[i + 1].Points)
-                    {
-                        var tempVar = HighScoreList[i].Points;
-                        HighScoreList[i].Points = HighScoreList[i + 1].Points;
-                        HighScoreList[i + 1].Points = tempVar;
-                        changed = true;
-                    }
-                }
-            } while (changed == true);
-
-            //om den är mindre än tredje --> lägg den inte in i listan
         }
-
+        
         //HighScoreList.Add("player1", 3); //test
         //HighScoreList.Add("player2", 2); 
         //HighScoreList.Add("player3", 1); 
@@ -75,7 +51,7 @@ namespace Menus
             MenuHighScoreHeader();
             foreach (var score in HighScoreList)
             {
-                Console.WriteLine("Name: " + score.Name + " Score: " + score.Points);
+                Console.WriteLine("Name:\"" + score.Name + "\" Score: " + score.Points);
             }
         }
 
@@ -86,7 +62,7 @@ namespace Menus
             Console.ResetColor();
         }
 
-        private static void BackToMenu()
+        private static void BackToMenuMain()
         {
             Console.WriteLine("\n\nPress any key to go back to MENU");
             Console.ReadKey();

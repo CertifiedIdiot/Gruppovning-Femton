@@ -158,6 +158,20 @@ namespace Game
         public static void EndGame()
         {
             Console.Clear();
+            if(Player.Points > Computer.Points)
+            {
+                DisplayHelper.CenterWriteLine("Congratulations! You Won\n");
+            }
+            else if(Computer.Points > Player.Points)
+            {
+                Console.WriteLine("You Lost... Better Luck Next Time\n");
+            }
+            else
+            {
+                DisplayHelper.CenterWriteLine("Nobody Wins, Its A Draw\n");
+            }
+            
+            DisplayHelper.CenterPressEnterToContinue();
             Menus.MenuHighScore.SaveScore(Computer.Points, Player.Points);
             Menus.MenuMain.Start();
         }
