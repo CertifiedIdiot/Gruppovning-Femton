@@ -21,6 +21,24 @@ namespace Game
             // <insert game loop here> 
             while (Deck.CheckCardsLeft(10))
             {
+                /*
+                 
+                CheckPixs();
+                FillBoard();
+                AddPoints();
+                
+                PlayerGameBoard = new List<Card>;
+                ComputerGameBoard = new List<Card>;
+                Computer.CardSum = 0;
+                Player.CardSum = 0;
+
+                DisplayHelper.CenterPressEnterToContinue();
+                 */
+
+
+
+
+
                 CheckPixs();
                 FillBoard();
                 AddPoints();
@@ -34,6 +52,30 @@ namespace Game
 
         public static void FillBoard()
         {
+            /*
+            foreach(var card in Deck.DrawCard(5))
+            {
+                if(Player.Points!=15)
+                {
+                    PlayerGameBoard.Add();
+                }
+                
+                DisplayGameBoard.ShowBoard();
+            }
+
+            foreach(var card in Deck.DrawCard(5))
+            {
+                if(Computer.Points!=15)
+                {
+                    ComputerGameBoard.Add();
+                }
+                
+                DisplayGameBoard.ShowBoard();
+            }
+             
+             
+             
+             */
             //5 cards for the player
             for (int i = 0; i < 5; i++)
             {
