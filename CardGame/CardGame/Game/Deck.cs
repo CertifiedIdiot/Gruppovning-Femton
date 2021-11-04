@@ -65,24 +65,23 @@ namespace Game
             return suit;
         }
 
-        public static void PrintCard()
-        {
-
-        }
-
         public static bool CheckCardsLeft(int cardsLeft=1)
         {
             if (Cards.Count < cardsLeft)
+            {
                 return false;
+            }
             else
+            {
                 return true;
+            }
         }
 
         private static void FillDeck()
-        {
-                      
+        {       
             int suitNumber = 0;
             int cardNumber = 1;
+
             for (int i = 0; i <= 52; i++)
             {
                 if (cardNumber > 13)
@@ -97,7 +96,6 @@ namespace Game
                 }
 
                 Cards.Add(new Card() { Number = cardNumber, Suit = GetSuit(suitNumber) });
-
                 cardNumber++;
             }
         }
@@ -110,6 +108,7 @@ namespace Game
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;
+
             while (n > 1)
             {
                 n--;

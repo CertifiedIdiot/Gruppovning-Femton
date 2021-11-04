@@ -30,7 +30,6 @@ namespace Game
                 AddPoints();
                 DisplayGameBoard.ShowBoard();
                 
-                
                 PlayerGameBoard = new List<Card>();
                 ComputerGameBoard = new List<Card>();
                 Computer.CardSum = 0;
@@ -47,7 +46,6 @@ namespace Game
             bool playerTurn = false;
             foreach (var card in Deck.DrawCard(10))
             {
-                               
                 if (playerTurn && Player.CardSum < 15)
                 {
                     Player.CardSum += card.Number;
@@ -67,11 +65,17 @@ namespace Game
                 DisplayHelper.CenterPressEnterToContinue();
 
                 if (Computer.CardSum >= 15)
+                {
                     playerTurn = true;
+                }
                 if (Player.CardSum >= 15)
+                {
                     playerTurn = false;
+                }
                 if (Player.CardSum >= 15 && Computer.CardSum >= 15 || PlayerGameBoard.Count >= 5 || ComputerGameBoard.Count >= 5)
+                {
                     break;
+                }
             }
         }
 

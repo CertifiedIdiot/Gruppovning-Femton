@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CardGame;
+﻿using CardGame;
 using Game;
+using System;
 
 namespace Menus
 {
@@ -16,31 +12,29 @@ namespace Menus
         {
             PrintMenu();
 
-            
             while (true)
             {
                 switch (InputHandler.ConsoleToInt())
-                    {
-                        case 1:
-                            Console.WriteLine("What is your name?");
-                            Menus.MenuHighScore.PlayerName = InputHandler.ConsoleToFullName();
-                            Game.Game.Start();
-                            return;
+                {
+                    case 1:
+                        Console.WriteLine("What is your name?");
+                        Menus.MenuHighScore.PlayerName = InputHandler.ConsoleToFullName();
+                        Game.Game.Start();
+                        return;
 
-                        case 2:
-                            MenuHighScore.Start();
-                            return;
+                    case 2:
+                        MenuHighScore.Start();
+                        return;
 
-                        case 3:
-                            Console.WriteLine("Thank you for playing!"); Environment.Exit(0);
-                            return;
+                    case 3:
+                        Console.WriteLine("Thank you for playing!"); Environment.Exit(0);
+                        return;
 
-                        default:
-                            Console.WriteLine("Invalid Menu Choice.\n");
-                            break;
-                    }
+                    default:
+                        Console.WriteLine("Invalid Menu Choice.\n");
+                        break;
+                }
             }
-
         }
 
         private static void PrintMenu() //kommer att göra den lite snyggare

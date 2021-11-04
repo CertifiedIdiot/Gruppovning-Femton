@@ -26,7 +26,6 @@ namespace Graphics
             CardMiddleSuit = GetCardMiddleSuit();
             CardNumberBottom = GetCardNumberBottom();
             ConstructedCard = CardArray();
-            
         }
 
         // Changes the value of the card constructed.
@@ -36,9 +35,13 @@ namespace Graphics
             string cardNumberTop = $"│ {cardNumber}       │";
             string cardNumberTopTen = $"│ {cardNumber}      │";
             if (cardNumber == "10")
+            {
                 return cardNumberTopTen;
+            }
             else
+            {
                 return cardNumberTop;
+            }
         }
 
         public string GetCardNumberBottom()
@@ -47,9 +50,13 @@ namespace Graphics
             string cardNumberBottom = $"│       {cardNumber} │";
             string cardNumberBottomTen = $"│      {cardNumber} │";
             if (cardNumber == "10")
+            {
                 return cardNumberBottomTen;
+            }
             else
+            {
                 return cardNumberBottom;
+            }
         }
 
         // Changes the suit of the card.
@@ -65,38 +72,53 @@ namespace Graphics
         {
             var value = ChosenCard.Number.ToString();
             if (value == "11")
+            {
                 return "J";
+            }
             else if (value == "12")
+            {
                 return "Q";
+            }
             else if (value == "13")
+            {
                 return "K";
+            }
             else
+            {
                 return value;
+            }
         }
 
         public char GetSuit()
         {
             var suit = ChosenCard.Suit;
             if (suit == Suits.Diamonds)
+            {
                 return '♦';
+            }
             else if (suit == Suits.Clubs)
+            {
                 return '♣';
+            }
             else if (suit == Suits.Hearts)
+            {
                 return '♥';
+            }
             else if (suit == Suits.Spade)
+            {
                 return '♠';
+            }
             else
-            return '#';
+            {
+                return '#';
+            }
         }
-
 
         // Constructs card top to bottom.
         public string[] CardArray()
         {
             string[] constructedCard = { CardTop, CardNumberTop, CardMiddle, CardMiddleSuit, CardMiddle, CardNumberBottom, CardBottom };
             return constructedCard;
-
         }
-
     }
 }

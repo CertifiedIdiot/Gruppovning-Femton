@@ -8,7 +8,7 @@ namespace Menus
 {
     class MenuHighScore
     {
-       static List<PlayerScore> HighScoreList = new();
+        static List<PlayerScore> HighScoreList = new();
         public static string PlayerName = "";
 
         public static void Start()
@@ -35,7 +35,6 @@ namespace Menus
                 Score.Points = computerPoints;  
                 update = true;            
             }
-
             if(update)
             {
                 HighScoreList.Add(Score);
@@ -49,6 +48,7 @@ namespace Menus
         private static void PrintHighScore()
         {
             MenuHighScoreHeader();
+
             foreach (var score in HighScoreList)
             {
                 Console.WriteLine("Name:\"" + score.Name + "\" Score: " + score.Points);

@@ -15,10 +15,8 @@ namespace Graphics
         // Prints out the entire gameboard with updated cards.
         public static void ShowBoard()
         {
-
             // Each card stored in ComputerGameBoard and PlayerGameBoard gets stored in an array with room for 5 elements. ComputerGameBoard/PlayerGameBoard does not need to contain precisely 5 cards anymore.
             DrawnCard[] computerDrawCards = PopulateComputerCardArray();
-
             DrawnCard[] playerDrawCards = PopulatePlayerCardArray();
 
             // Print background ASCII
@@ -38,6 +36,7 @@ namespace Graphics
         private static DrawnCard[] PopulatePlayerCardArray()
         {
             DrawnCard[] playerDrawCards = new DrawnCard[5];
+
             for (int i = 0; i < PlayerGameBoard.Count; i++)
             {
                 playerDrawCards[i] = new(PlayerGameBoard[i]);
@@ -48,6 +47,7 @@ namespace Graphics
         private static DrawnCard[] PopulateComputerCardArray()
         {
             DrawnCard[] computerDrawCards = new DrawnCard[5];
+
             for (int i = 0; i < ComputerGameBoard.Count; i++)
             {
                 //List<object> tempList = new(new object[5]);
@@ -65,15 +65,25 @@ namespace Graphics
 
             // If the array index is not null, prints the corresponding card at the chosen position (if the array does not have anything in it at that position, nothing will be printed)
             if (drawPlayerCards[0] != null)
+            {
                 PrintCard(21, 18, drawPlayerCards[0].ConstructedCard);
+            }
             if (drawPlayerCards[1] != null)
+            {
                 PrintCard(36, 18, drawPlayerCards[1].ConstructedCard);
+            }
             if (drawPlayerCards[2] != null)
+            {
                 PrintCard(51, 18, drawPlayerCards[2].ConstructedCard);
+            }
             if (drawPlayerCards[3] != null)
+            {
                 PrintCard(66, 18, drawPlayerCards[3].ConstructedCard);
+            }
             if (drawPlayerCards[4] != null)
+            {
                 PrintCard(81, 18, drawPlayerCards[4].ConstructedCard);
+            }
         }
 
         private static void PrintComputerSide(DrawnCard[] drawComputerCards)
@@ -83,15 +93,25 @@ namespace Graphics
             PrintComputerPoints(97, 7);
 
             if (drawComputerCards[0] != null)
+            {
                 PrintCard(21, 7, drawComputerCards[0].ConstructedCard);
+            }
             if (drawComputerCards[1] != null)
+            {
                 PrintCard(36, 7, drawComputerCards[1].ConstructedCard);
+            }
             if (drawComputerCards[2] != null)
+            {
                 PrintCard(51, 7, drawComputerCards[2].ConstructedCard);
+            }
             if (drawComputerCards[3] != null)
+            {
                 PrintCard(66, 7, drawComputerCards[3].ConstructedCard);
+            }
             if (drawComputerCards[4] != null)
+            {
                 PrintCard(81, 7, drawComputerCards[4].ConstructedCard);
+            }
         }
 
 
@@ -109,7 +129,6 @@ namespace Graphics
 
         private static void PrintPlayerPix(int posY, int posX)
         {
-            
             Console.SetCursorPosition(posY, posX);
             WriteLineColour($"Your Pix:", ConsoleColor.DarkCyan);
             Console.SetCursorPosition(posY, posX + 1);
@@ -126,7 +145,6 @@ namespace Graphics
 
         private static void PrintPlayerPoints(int posY, int posX)
         {
-
             Console.SetCursorPosition(posY, posX);
             WriteLineColour($"Your Points:", ConsoleColor.DarkCyan);
             Console.SetCursorPosition(posY, posX + 1);
@@ -143,7 +161,6 @@ namespace Graphics
 
         private static void PrintComputerCardSum(int posY)
         {
-
             Console.CursorTop = posY;
             CenterWriteLineColour($"[  Card Value: {Computer.CardSum}  ]", ConsoleColor.Red); 
         }
@@ -152,7 +169,5 @@ namespace Graphics
             Console.CursorTop = posY;
             CenterWriteLineColour($"[  Card Value: {Player.CardSum}  ]", ConsoleColor.DarkCyan); 
         }
-        
-
     }
 }

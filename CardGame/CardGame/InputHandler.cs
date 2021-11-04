@@ -5,7 +5,6 @@ namespace CardGame
 {
     class InputHandler
     {
-
         public static string ConsoleToFullName()
         {
             while(true)
@@ -63,6 +62,7 @@ namespace CardGame
                 {
                     return number;
                 }
+
                 Console.WriteLine("\nPlease type a valid number.");
             }
         }
@@ -75,7 +75,7 @@ namespace CardGame
             {
                 if (obligatoryInput && singleInput != true)
                 {
-                    do
+                    while(true)
                     {
                         strInput = Console.ReadLine();
 
@@ -87,7 +87,7 @@ namespace CardGame
                         {
                             return strInput;
                         }
-                    } while (true);
+                    }
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace CardGame
                     }
                 }
             }
-
+            
             return Console.ReadLine();
         }
     }
