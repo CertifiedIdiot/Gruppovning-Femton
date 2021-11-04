@@ -15,6 +15,7 @@ namespace Graphics
         // Prints out the entire gameboard with updated cards.
         public static void ShowBoard()
         {
+            Console.CursorVisible = false;
             // Each card stored in ComputerGameBoard and PlayerGameBoard gets stored in an array with room for 5 elements. ComputerGameBoard/PlayerGameBoard does not need to contain precisely 5 cards anymore.
             DrawnCard[] computerDrawCards = PopulateComputerCardArray();
             DrawnCard[] playerDrawCards = PopulatePlayerCardArray();
