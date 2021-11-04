@@ -16,10 +16,13 @@ namespace Game
      
         public static void Start()
         {
+            // Resets the stuffs and things. Pixfix?
             Player.Points = 0;
             Computer.Points = 0;
             Player.Pix = 500;
             Computer.Pix = 500;
+            //---------------------------
+
             Deck.ResetCards();
             Console.Clear();
 
