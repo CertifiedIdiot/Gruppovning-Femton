@@ -56,34 +56,37 @@ namespace Game
 
         public static void FillBoard()
         {
-            
-            foreach(var card in Deck.DrawCard(5))
+            bool playerTurn = false;
+            foreach (var card in Deck.DrawCard(10))
             {
-                
-                if (Player.CardSum != 15)
+
+                if (playerTurn && Player.CardSum < 15)
                 {
                     Player.CardSum += card.Number;
                     PlayerGameBoard.Add(card);
+
+                    playerTurn = false;
                 }
-
-
-                Debug.Write("List Count: " + PlayerGameBoard.Count + " | Card Sum: " + Player.CardSum);
-                Debug.WriteLine("");
-                //DisplayGameBoard.ShowBoard();
-            }
-
-            foreach(var card in Deck.DrawCard(5))
-            {
-                
-                if (Computer.CardSum != 15)
+                else if(!playerTurn && Computer.CardSum < 15)//(Computer.CardSum != 15)
                 {
                     Computer.CardSum += card.Number;
                     ComputerGameBoard.Add(card);
+
+                    playerTurn = true;
                 }
 
-                //DisplayGameBoard.ShowBoard();
+                Debug.Write("List Count: " + PlayerGameBoard.Count + " | Card Sum: " + Player.CardSum);
+                Debug.WriteLine("");
+                DisplayGameBoard.ShowBoard();
+                DisplayHelper.CenterPressEnterToContinue();
+
+                if (Computer.CardSum >= 15)
+                    playerTurn = true;
+                if (Player.CardSum >= 15)
+                    playerTurn = false;
+                if (Player.CardSum >= 15 && Computer.CardSum >= 15)
+                    break;
             }
-             
              
              
              /*
@@ -104,47 +107,25 @@ namespace Game
 
         public static void AddPoints()
         {
-            // Loopa gameboard och se kort
-            // Kolla vem som har fått poäng, om någon alls
-            // Dela ut rätt mängd pixs
-            for (int i = 0; i < PlayerGameBoard.Count; i++)
+            if (Player.CardSum == 15 && Computer.CardSum != 15) // Spelaren vann en runda
             {
-                //Player.CardSum += PlayerGameBoard[i].Number;
-
-            }
-
-            for (int i = 0; i < ComputerGameBoard.Count; i++)
-            {
-                //Computer.CardSum += ComputerGameBoard[i].Number;
-            }
-
-            if (Player.CardSum == 15 && Computer.CardSum != 15) // Spelaren vinner
-            {
-                Console.WriteLine("You won! You get one point."); //visas upp på grafik
+                Console.WriteLine("You won! You get one point.");
                 Player.Points++;
+                Player.Pix += 100;
+                Computer.Pix -= 100;
             }
-            else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vinner
+            else if (Computer.CardSum == 15 && Player.CardSum != 15) // Datorn vann en runda
             {
-                Console.WriteLine("Computer won! You get one point."); //visas upp på grafik
+                Console.WriteLine("Computer won!");
                 Computer.Points++;
+                Player.Pix -= 100;
+                Computer.Pix += 100;
             }
             else if (Computer.CardSum == 15 && Player.CardSum == 15) // Båda vinner
             {
                 Player.Points++;
                 Computer.Points++;
             }
-
-            if (Player.Points > Computer.Points)
-            {
-                Player.Pix += 100;
-                Computer.Pix -= 100;
-            }
-            else if(Player.Points < Computer.Points)
-            {
-                Player.Pix -= 100;
-                Computer.Pix += 100;
-            }
-
         }
 
         public static bool CheckPixs()
@@ -152,6 +133,15 @@ namespace Game
             if (Player.Pix < 100 || Computer.Pix < 100)
             {
                 DisplayHelper.CenterWriteLine("Pengar slut");
+
+
+                /*
+                 * ***** Spelet slut här *****
+                 *    Registrera highscore ***
+                 *    ************************
+                 */
+                EndGame();
+
                 return false;
             } 
             else
@@ -164,10 +154,9 @@ namespace Game
         {
             if(!Deck.CheckCardsLeft(10))
             {
+                DisplayHelper.CenterWriteLine("Slut på kort");
                 EndGame();
             }
-            // Har vi kort för att spela?
-            // Om inte endgame.
         }
 
         public static void EndGame()

@@ -38,7 +38,7 @@ namespace Graphics
         private static DrawnCard[] PopulatePlayerCardArray()
         {
             DrawnCard[] playerDrawCards = new DrawnCard[5];
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < PlayerGameBoard.Count; i++)
             {
                 playerDrawCards[i] = new(PlayerGameBoard[i]);
             }
@@ -48,8 +48,9 @@ namespace Graphics
         private static DrawnCard[] PopulateComputerCardArray()
         {
             DrawnCard[] computerDrawCards = new DrawnCard[5];
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < ComputerGameBoard.Count; i++)
             {
+                //List<object> tempList = new(new object[5]);
                 computerDrawCards[i] = new(ComputerGameBoard[i]);
             }
             return computerDrawCards;
