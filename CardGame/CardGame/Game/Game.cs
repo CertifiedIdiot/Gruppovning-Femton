@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Graphics;
 using CardGame;
+using System.Diagnostics;
 
 namespace Game
 {
@@ -59,21 +60,24 @@ namespace Game
             foreach(var card in Deck.DrawCard(5))
             {
                 
-                if (Player.Points!=15)
+                if (Player.CardSum != 15)
                 {
-                    Player.Points += card.Number;
+                    Player.CardSum += card.Number;
                     PlayerGameBoard.Add(card);
                 }
 
+
+                Debug.Write("List Count: " + PlayerGameBoard.Count + " | Card Sum: " + Player.CardSum);
+                Debug.WriteLine("");
                 //DisplayGameBoard.ShowBoard();
             }
 
             foreach(var card in Deck.DrawCard(5))
             {
                 
-                if (Computer.Points!=15)
+                if (Computer.CardSum != 15)
                 {
-                    Player.Points += card.Number;
+                    Computer.CardSum += card.Number;
                     ComputerGameBoard.Add(card);
                 }
 
@@ -105,13 +109,13 @@ namespace Game
             // Dela ut rätt mängd pixs
             for (int i = 0; i < PlayerGameBoard.Count; i++)
             {
-                Player.CardSum += PlayerGameBoard[i].Number;
+                //Player.CardSum += PlayerGameBoard[i].Number;
 
             }
 
             for (int i = 0; i < ComputerGameBoard.Count; i++)
             {
-                Computer.CardSum += ComputerGameBoard[i].Number;
+                //Computer.CardSum += ComputerGameBoard[i].Number;
             }
 
             if (Player.CardSum == 15 && Computer.CardSum != 15) // Spelaren vinner
