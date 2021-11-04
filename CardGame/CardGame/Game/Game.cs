@@ -11,19 +11,16 @@ namespace Game
         public static PlayerStats Player = new();
         public static PlayerStats Computer = new();
 
-        public static List<Card> PlayerGameBoard = new List<Card>();//(new Card[5]);
-        public static List<Card> ComputerGameBoard = new List<Card>();//(new Card[5]);
+        public static List<Card> PlayerGameBoard = new List<Card>();
+        public static List<Card> ComputerGameBoard = new List<Card>();
      
         public static void Start()
         {
             Deck.ResetCards();
             Console.Clear();
 
-            // <insert game loop here> 
             while (Deck.CheckCardsLeft(10))
             {
-                
-                 
                 CheckPixs();
                 FillBoard();
                 AddPoints();
@@ -36,21 +33,6 @@ namespace Game
                 Player.CardSum = 0;
 
                 DisplayHelper.CenterPressEnterToContinue();
-
-
-                Deck.ResetCards();
-
-
-                /*
-                CheckPixs();
-                FillBoard();
-                AddPoints();
-                DisplayGameBoard.ShowBoard();
-                DisplayHelper.CenterPressEnterToContinue();
-
-                Computer.CardSum = 0;
-                Player.CardSum = 0;
-                */
             }
         }
 
@@ -67,7 +49,7 @@ namespace Game
 
                     playerTurn = false;
                 }
-                else if(!playerTurn && Computer.CardSum < 15)//(Computer.CardSum != 15)
+                else if(!playerTurn && Computer.CardSum < 15)
                 {
                     Computer.CardSum += card.Number;
                     ComputerGameBoard.Add(card);
@@ -75,8 +57,6 @@ namespace Game
                     playerTurn = true;
                 }
 
-                Debug.Write("List Count: " + PlayerGameBoard.Count + " | Card Sum: " + Player.CardSum);
-                Debug.WriteLine("");
                 DisplayGameBoard.ShowBoard();
                 DisplayHelper.CenterPressEnterToContinue();
 
@@ -87,22 +67,6 @@ namespace Game
                 if (Player.CardSum >= 15 && Computer.CardSum >= 15)
                     break;
             }
-             
-             
-             /*
-            //5 cards for the player
-            for (int i = 0; i < 5; i++)
-            {
-                PlayerGameBoard[i] = Deck.DrawCard();
-            }
-
-            //5 cards for the computer
-            for (int i = 0; i < 5; i++)
-            {
-                ComputerGameBoard[i] = Deck.DrawCard();
-            }
-             */
-
         }
 
         public static void AddPoints()
@@ -134,12 +98,6 @@ namespace Game
             {
                 DisplayHelper.CenterWriteLine("Pengar slut");
 
-
-                /*
-                 * ***** Spelet slut här *****
-                 *    Registrera highscore ***
-                 *    ************************
-                 */
                 EndGame();
 
                 return false;
@@ -155,6 +113,7 @@ namespace Game
             if(!Deck.CheckCardsLeft(10))
             {
                 DisplayHelper.CenterWriteLine("Slut på kort");
+
                 EndGame();
             }
         }
