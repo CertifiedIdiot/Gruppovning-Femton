@@ -37,7 +37,7 @@ namespace Menus
             }
         }
 
-        private static void PrintMenu() //kommer att göra den lite snyggare
+        private static void PrintMenu()
         {
             MenuHeader();
             Console.WriteLine("Welcome to this card game! Each round costs 100 pix.");
@@ -49,8 +49,36 @@ namespace Menus
 
         private static void MenuHeader()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\tMENU");
+            PrintRed("   F");
+            PrintGreen("      E");
+            PrintRed("       M");
+            PrintGreen("      T");
+            PrintRed("      O");
+            PrintGreen("      N");
+
+            Console.WriteLine(@"
+ _____  _____  _    _  _____  _____  _   _
+|♥♥♥♥♥||♣♣♣♣♣||♥\  /♥||♠♠♠♠♠||♥♥♥♥♥||♣\ |♣|
+|♥|--  |♣|--  |♥|\/|♥|  |♠|  |♥| |♥||♣|\|♣|
+|♥|    |♣♣♣♣♣||♥|  |♥|  |♠|  |♥♥♥♥♥||♣| \♣|
+");
+            
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("| M E N U |");
+            Console.ResetColor();
+        }
+
+        private static void PrintRed(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(text);
+            Console.ResetColor();
+        }
+
+        private static void PrintGreen(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write(text);
             Console.ResetColor();
         }
     }

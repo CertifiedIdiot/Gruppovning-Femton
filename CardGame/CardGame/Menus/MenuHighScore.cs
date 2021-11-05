@@ -40,10 +40,6 @@ namespace Menus
                 HighScoreList.Add(Score);
             }
         }
-        
-        //HighScoreList.Add("player1", 3); //test
-        //HighScoreList.Add("player2", 2); 
-        //HighScoreList.Add("player3", 1); 
 
         private static void PrintHighScore()
         {
@@ -58,7 +54,7 @@ namespace Menus
         private static void MenuHighScoreHeader()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("\tHIGHSCORE");
+            Console.WriteLine("\tH I G H S C O R E");
             Console.ResetColor();
         }
 
